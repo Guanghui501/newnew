@@ -3,206 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEMESIS - Nitrogen-rich Energetic Materials Database</title>
+    <title>Nitrogen-rich Energetic Materials Information Database (Nemesis)</title>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-bg: #f8f9fa;
-            --text-color: #2c3e50;
-        }
-
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 2rem;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
         h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
-
-        .search-container {
-            position: relative;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #search-box {
-            width: 100%;
-            padding: 1rem 2rem;
-            border: 2px solid var(--secondary-color);
-            border-radius: 2rem;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        #search-box:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
-        }
-
         table {
             width: 100%;
-            background: white;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 1px 15px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
             border-collapse: collapse;
         }
-
-        thead {
-            background: linear-gradient(145deg, var(--primary-color), #1a252f);
-            color: white;
+        table, th, td {
+            border: 1px solid #ddd;
         }
-
-        th {
-            padding: 1.2rem;
-            font-weight: 600;
+        th, td {
+            padding: 8px;
             text-align: left;
-            position: relative;
-            transition: background 0.2s ease;
-        }
-
-        th:hover {
-            background: rgba(255,255,255,0.1);
             cursor: pointer;
+            font-size: 22px;
         }
-
-        th[data-sort-direction="asc"]::after {
-            content: ' ↑';
-            position: static;
-            display: inline-block;
-            margin-left: 8px;
-        }
-
-        th[data-sort-direction="desc"]::after {
-            content: ' ↓';
-            position: static;
-            display: inline-block;
-            margin-left: 8px;
-        }
-
-        td {
-            padding: 1rem;
-            border-bottom: 1px solid #e9ecef;
-            transition: background 0.2s ease;
-        }
-
-        tr:hover td {
-            background: #f8f9fa;
-            cursor: pointer;
-        }
-
         .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
+            margin-top: 20px;
         }
-
         .pagination button {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 0.5rem;
-            background: var(--secondary-color);
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 600;
+            padding: 8px;
+            margin: 0 5px;
         }
-
-        .pagination button:hover {
-            background: var(--primary-color);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .pagination button:disabled {
-            background: #bdc3c7;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        #page-number {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .numeric-cell {
-            text-align: right;
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-            
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-            
-            th, td {
-                min-width: 120px;
-            }
+        #search-box {
+            width: 400px;
+            height: 30px;
+            padding: 8px;
+            margin-bottom: 25px;
+            font-size: 25px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>NEMESIS Database</h1>
+    <h1>Nitrogen-rich Energetic Materials Information Database (Nemesis)</h1>
 
-        <div class="search-container">
-            <input type="text" id="search-box" placeholder="Search by chemical formula..." 
-                   oninput="renderTable()">
-        </div>
+    <!-- Search Box -->
+    <input type="text" id="search-box" placeholder="Search by formula..." oninput="renderTable()">
 
-        <table id="data-table">
-            <thead>
-                <tr>
-                    <th onclick="sortBy('id')">ID</th>
-                    <th onclick="sortBy('formula')">Formula</th>
-                    <th onclick="sortBy('mass_density')">Density (g/cm³)</th>
-                    <th onclick="sortBy('N_concentration')">N Content (%)</th>
-                    <th onclick="sortBy('E_d')">Energy (kJ/g)</th>
-                    <th onclick="sortBy('V_d')">Velocity (km/s)</th>
-                    <th onclick="sortBy('P_d')">Pressure (GPa)</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th onclick="sortBy('id')">ID</th>
+                <th onclick="sortBy('formula')">Formula</th>
+                <th onclick="sortBy('mass_density')"><span id="th-mass_density">Mass Density (g/cm<sup>3</sup>)</span></th>
+                <th onclick="sortBy('N_concentration')"><span id="th-N_concentration">N Concentration (%)</span></th>
+                <th onclick="sortBy('E_d')"><span id="th-E_d">E<sub>d</sub> (kJ/g)</span></th>
+                <th onclick="sortBy('V_d')"><span id="th-V_d">V<sub>d</sub> (km/s)</span></th>
+                <th onclick="sortBy('P_d')"><span id="th-P_d">P<sub>d</sub> (GPa)</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
 
-        <div class="pagination">
-            <button onclick="changePage('prev')" id="prev-btn">Previous</button>
-            <span id="page-number"></span>
-            <button onclick="changePage('next')" id="next-btn">Next</button>
-        </div>
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button onclick="changePage('prev')">Prev</button>
+        <span id="page-number">Page 1</span>
+        <button onclick="changePage('next')">Next</button>
     </div>
 
     <script>
@@ -221,34 +92,22 @@
             return parseFloat(value).toFixed(3);
         }
 
-        let sortColumn = 'id';
+        let sortColumn = null;
         let sortDirection = 'desc';
         let data = {};
         let currentPage = 1;
-        const rowsPerPage = 15;
+        const rowsPerPage = 20;
 
-        // Mock data fetch - replace with actual fetch('db.json')
-        setTimeout(() => {
-            data = {
-                "1": {
-                    "formula": "C3N6O6",
-                    "mass_density": 1.85,
-                    "N_concentration": 36.8,
-                    "E_d": 5.42,
-                    "V_d": 8.72,
-                    "P_d": 32.1
-                },
-                "2": {
-                    "formula": "C4N8O8",
-                    "mass_density": 1.92,
-                    "N_concentration": 39.1,
-                    "E_d": 5.65,
-                    "V_d": 8.95,
-                    "P_d": 34.2
-                }
-            };
-            renderTable();
-        }, 100);
+        // Fetch the JSON data
+        fetch('db.json')
+            .then(response => response.json())
+            .then(jsonData => {
+                data = jsonData;
+                renderTable();
+            })
+            .catch(error => {
+                console.error('Error loading JSON data:', error);
+            });
 
         function sortBy(column) {
             if (sortColumn === column) {
@@ -260,6 +119,7 @@
             renderTable();
         }
 
+        // Render table with current page and search query
         function renderTable() {
             const tableBody = document.querySelector('#data-table tbody');
             tableBody.innerHTML = '';
@@ -269,22 +129,48 @@
                 entry.formula.toLowerCase().includes(searchQuery)
             );
 
-            filteredData.sort((a, b) => {
-                const aVal = sortColumn === 'id' ? parseInt(a[0]) : a[1][sortColumn];
-                const bVal = sortColumn === 'id' ? parseInt(b[0]) : b[1][sortColumn];
+            function updateSortArrows() {
+                const allHeaders = ['mass_density', 'N_concentration', 'E_d', 'V_d', 'P_d'];
+                allHeaders.forEach(header => {
+                    const thSpan = document.getElementById('th-' + header);
+                    if (thSpan) {
+                        thSpan.innerHTML = getColumnDisplayName(header) + 
+                            (sortColumn === header ? (sortDirection === 'asc' ? ' ↑' : ' ↓') : '');
+                    }
+                });
+            }
 
-                if (typeof aVal === 'number' && typeof bVal === 'number') {
-                    return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+            function getColumnDisplayName(col) {
+                switch (col) {
+                    case 'mass_density': return 'Mass Density (g/cm³)';
+                    case 'N_concentration': return 'N Concentration (%)';
+                    case 'E_d': return 'E<sub>d</sub> (kJ/g)';
+                    case 'V_d': return 'V<sub>d</sub> (km/s)';
+                    case 'P_d': return 'P<sub>d</sub> (GPa)';
+                    default: return col;
                 }
-                return 0;
-            });
+            }
 
-            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
-            currentPage = Math.min(currentPage, totalPages);
-            currentPage = Math.max(currentPage, 1);
+            if (sortColumn) {
+                filteredData.sort((a, b) => {
+                    let aVal = sortColumn === 'id' ? parseInt(a[0]) : a[1][sortColumn];
+                    let bVal = sortColumn === 'id' ? parseInt(b[0]) : b[1][sortColumn];
+
+                    aVal = (aVal === undefined || aVal === null) ? -Infinity : aVal;
+                    bVal = (bVal === undefined || bVal === null) ? -Infinity : bVal;
+
+                    if (typeof aVal === 'number' && typeof bVal === 'number') {
+                        return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+                    } else {
+                        return sortDirection === 'asc' ?
+                            String(aVal).localeCompare(String(bVal)) :
+                            String(bVal).localeCompare(String(aVal));
+                    }
+                });
+            }
 
             const startIndex = (currentPage - 1) * rowsPerPage;
-            const endIndex = startIndex + rowsPerPage;
+            const endIndex = currentPage * rowsPerPage;
             const paginatedData = filteredData.slice(startIndex, endIndex);
 
             paginatedData.forEach(([entryId, entry]) => {
@@ -292,60 +178,53 @@
                 row.innerHTML = `
                     <td>${entryId}</td>
                     <td>${toSubscript(entry.formula)}</td>
-                    <td class="numeric-cell">${formatNumber(entry.mass_density)}</td>
-                    <td class="numeric-cell">${formatNumber(entry.N_concentration)}</td>
-                    <td class="numeric-cell">${formatNumber(entry.E_d)}</td>
-                    <td class="numeric-cell">${formatNumber(entry.V_d)}</td>
-                    <td class="numeric-cell">${formatNumber(entry.P_d)}</td>
+                    <td>${formatNumber(entry.mass_density)}</td>
+                    <td>${formatNumber(entry.N_concentration)}</td>
+                    <td>${formatNumber(entry.E_d)}</td>
+                    <td>${formatNumber(entry.V_d)}</td>
+                    <td>${formatNumber(entry.P_d)}</td>
                 `;
-                row.addEventListener('click', () => showDetails(entryId));
+                row.addEventListener('click', () => showDetailsInNewPage(entryId));
                 tableBody.appendChild(row);
             });
 
             updatePagination(filteredData.length);
-            updateSortHeaders();
-        }
-
-        function updatePagination(totalItems) {
-            const totalPages = Math.ceil(totalItems / rowsPerPage);
-            document.getElementById('page-number').textContent = 
-                `Page ${currentPage} of ${totalPages || 1}`;
-            
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === totalPages;
+            updateSortArrows();
         }
 
         function changePage(direction) {
-            direction === 'next' ? currentPage++ : currentPage--;
+            const totalRows = Object.keys(data).length;
+            const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+            if (direction === 'prev' && currentPage > 1) {
+                currentPage--;
+            } else if (direction === 'next' && currentPage < totalPages) {
+                currentPage++;
+            }
             renderTable();
         }
 
-        function updateSortHeaders() {
-            document.querySelectorAll('th').forEach(header => {
-                const colName = header.getAttribute('onclick').replace("sortBy('", "").replace("')", "");
-                header.removeAttribute('data-sort-direction');
-                if (colName === sortColumn) {
-                    header.setAttribute('data-sort-direction', sortDirection);
-                }
-            });
+        function updatePagination(totalRows) {
+            const totalPages = Math.ceil(totalRows / rowsPerPage);
+            document.getElementById('page-number').textContent = 
+                `Page ${currentPage} of ${totalPages}`;
         }
 
-        function showDetails(entryId) {
+        function showDetailsInNewPage(entryId) {
             const entry = data[entryId];
-            alert(`Detailed View:\n
-                ID: ${entryId}
-                Formula: ${toSubscript(entry.formula)}
-                Density: ${formatNumber(entry.mass_density)} g/cm³
-                Nitrogen Content: ${formatNumber(entry.N_concentration)}%
-                Energy: ${formatNumber(entry.E_d)} kJ/g
-                Velocity: ${formatNumber(entry.V_d)} km/s
-                Pressure: ${formatNumber(entry.P_d)} GPa`);
+            const queryParams = new URLSearchParams({
+                id: entryId,
+                formula: entry.formula,
+                mass_density: entry.mass_density || 'N/A',
+                N_concentration: entry.N_concentration || 'N/A',
+                E_d: entry.E_d || 'N/A',
+                V_d: entry.V_d || 'N/A',
+                P_d: entry.P_d || 'N/A',
+                positions: JSON.stringify(entry.positions || 'N/A'),
+                cell: JSON.stringify(entry.cell || 'N/A')
+            });
+            window.open(`detail.html?${queryParams.toString()}`, '_blank');
         }
-
-        // Initial render
-        renderTable();
     </script>
 </body>
 </html>
