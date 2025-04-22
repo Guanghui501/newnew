@@ -146,6 +146,7 @@
              <p><strong>Energy Density (E<sub>d</sub>):</strong> <span id="ed"></span> kJ/g</p>
              <p><strong>Detonation Velocity (V<sub>d</sub>):</strong> <span id="vd"></span> km/s</p>
              <p><strong>Detonation Pressure (P<sub>d</sub>):</strong> <span id="pd"></span> GPa</p>
+             <p><strong>Reaction:</strong> <span id="reaction"></span></p>
  
              <div class="button-container">
                  <button id="download-cif" class="btn download-btn" disabled>Download the CIF file</button>
@@ -231,6 +232,7 @@
          document.getElementById('ed').innerText = material.E_d?.toFixed(3) ?? 'N/A';
          document.getElementById('vd').innerText = material.V_d?.toFixed(3) ?? 'N/A';
          document.getElementById('pd').innerText = material.P_d?.toFixed(3) ?? 'N/A';
+         document.getElementById('reaction').innerText = material.reaction ?? 'N/A';
      }
  
      function initializeViewer(material) {
