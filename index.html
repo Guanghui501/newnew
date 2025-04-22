@@ -8,13 +8,13 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            flex-direction:column;
-            align-items:center;
+            flex-direction: column;
+            align-items: center;
             height: 100vh;
             text-align: center;
         }
         h1 {
-            margin-bottom: 30px;;
+            margin-bottom: 30px;
         }
         table {
             width: 100%;
@@ -36,7 +36,7 @@
             padding: 8px;
             margin: 0 5px;
         }
-        #search-box{
+        #search-box {
             width: 400px;
             height: 30px;
             padding: 8px;
@@ -64,7 +64,6 @@
                 <th onclick="sortBy('P_d')"><span id="th-P_d">P<sub>d</sub> (GPa)</span></th>
             </tr>
         </thead>
-
         <tbody>
             <!-- Data will be inserted here -->
         </tbody>
@@ -79,22 +78,22 @@
 
     <script>
         function toSubscript(text) {
-             const subscriptMap = {
+            const subscriptMap = {
                 '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
                 '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉'
-             };
-             return text.replace(/\d/g, digit => subscriptMap[digit] || digit);
+            };
+            return text.replace(/\d/g, digit => subscriptMap[digit] || digit);
         }
 
         function formatNumber(value) {
             if (value === undefined || value === null || isNaN(value)) {
-                return 'N/A'
+                return 'N/A';
             }
             return parseFloat(value).toFixed(3);
         }
+
         let sortColumn = null;
         let sortDirection = 'desc';
-
         let data = {};
         let currentPage = 1;
         const rowsPerPage = 20;
@@ -112,10 +111,10 @@
 
         function sortBy(column) {
             if (sortColumn === column) {
-                sortDirection = (sortDirection === 'asc') ? 'desc' : 'asc';
+                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
             } else {
                 sortColumn = column;
-                sortDirection = 'desc'; // 默认第一次是降序
+                sortDirection = 'desc';
             }
             renderTable();
         }
@@ -123,56 +122,52 @@
         // Render table with current page and search query
         function renderTable() {
             const tableBody = document.querySelector('#data-table tbody');
-            tableBody.innerHTML = '';  // Clear existing rows
+            tableBody.innerHTML = '';
 
             const searchQuery = document.getElementById('search-box').value.toLowerCase();
             const filteredData = Object.entries(data).filter(([entryId, entry]) =>
                 entry.formula.toLowerCase().includes(searchQuery)
             );
 
-        function updateSortArrows() {
-            const allHeaders = ['mass_density', 'N_concentration', 'E_d', 'V_d', 'P_d'];
-            allHeaders.forEach(header => {
-                const thSpan = document.getElementById('th-' + header);
-                if (thSpan) {
-                    if (sortColumn === header) {
-                        thSpan.textContent = getColumnDisplayName(header) + (sortDirection === 'asc' ? ' ↑' : ' ↓');
-                    } else {
-                        thSpan.textContent = getColumnDisplayName(header);
+            function updateSortArrows() {
+                const allHeaders = ['mass_density', 'N_concentration', 'E_d', 'V_d', 'P_d'];
+                allHeaders.forEach(header => {
+                    const thSpan = document.getElementById('th-' + header);
+                    if (thSpan) {
+                        thSpan.innerHTML = getColumnDisplayName(header) + 
+                            (sortColumn === header ? (sortDirection === 'asc' ? ' ↑' : ' ↓') : '');
                     }
-                }
-            });
-        }
-    
-        function getColumnDisplayName(col) {
-            switch (col) {
-                case 'mass_density': return 'Mass Density (g/cm³)';
-                case 'N_concentration': return 'N Concentration (%)';
-                case 'E_d': return 'E<sub>d</sub> (kJ/g)';
-                case 'V_d': return 'V<sub>d</sub> (km/s)';
-                case 'P_d': return 'P<sub>d</sub> (GPa)';
-                default: return col;
+                });
             }
-        }
-    
-        // 排序
-        if (sortColumn) {
-           filteredData.sort((a, b) => {
-                let aVal = sortColumn === 'id' ? parseInt(a[0]) : a[1][sortColumn];
-                let bVal = sortColumn === 'id' ? parseInt(b[0]) : b[1][sortColumn];
 
-                if (aVal === undefined || aVal === null) aVal = -Infinity;
-                if (bVal === undefined || bVal === null) bVal = -Infinity;
-
-                if (typeof aVal === 'number' && typeof bVal === 'number') {
-                    return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
-                } else {
-                    return sortDirection === 'asc'
-                        ? String(aVal).localeCompare(String(bVal))
-                        : String(bVal).localeCompare(String(aVal));
+            function getColumnDisplayName(col) {
+                switch (col) {
+                    case 'mass_density': return 'Mass Density (g/cm³)';
+                    case 'N_concentration': return 'N Concentration (%)';
+                    case 'E_d': return 'E<sub>d</sub> (kJ/g)';
+                    case 'V_d': return 'V<sub>d</sub> (km/s)';
+                    case 'P_d': return 'P<sub>d</sub> (GPa)';
+                    default: return col;
                 }
-            });
-        }
+            }
+
+            if (sortColumn) {
+                filteredData.sort((a, b) => {
+                    let aVal = sortColumn === 'id' ? parseInt(a[0]) : a[1][sortColumn];
+                    let bVal = sortColumn === 'id' ? parseInt(b[0]) : b[1][sortColumn];
+
+                    aVal = (aVal === undefined || aVal === null) ? -Infinity : aVal;
+                    bVal = (bVal === undefined || bVal === null) ? -Infinity : bVal;
+
+                    if (typeof aVal === 'number' && typeof bVal === 'number') {
+                        return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+                    } else {
+                        return sortDirection === 'asc' ?
+                            String(aVal).localeCompare(String(bVal)) :
+                            String(bVal).localeCompare(String(aVal));
+                    }
+                });
+            }
 
             const startIndex = (currentPage - 1) * rowsPerPage;
             const endIndex = currentPage * rowsPerPage;
@@ -183,13 +178,12 @@
                 row.innerHTML = `
                     <td>${entryId}</td>
                     <td>${toSubscript(entry.formula)}</td>
-                    <td>${formatNumber(entry.mass_density) || 'N/A'}</td>
-                    <td>${formatNumber(entry.N_concentration) || 'N/A'}</td>
-                    <td>${formatNumber(entry.E_d) || 'N/A'}</td>
-                    <td>${formatNumber(entry.V_d) || 'N/A'}</td>
-                    <td>${formatNumber(entry.P_d) || 'N/A'}</td>
+                    <td>${formatNumber(entry.mass_density)}</td>
+                    <td>${formatNumber(entry.N_concentration)}</td>
+                    <td>${formatNumber(entry.E_d)}</td>
+                    <td>${formatNumber(entry.V_d)}</td>
+                    <td>${formatNumber(entry.P_d)}</td>
                 `;
-                // Add click event to open new page with detailed data
                 row.addEventListener('click', () => showDetailsInNewPage(entryId));
                 tableBody.appendChild(row);
             });
@@ -198,7 +192,6 @@
             updateSortArrows();
         }
 
-        // Change page (prev/next)
         function changePage(direction) {
             const totalRows = Object.keys(data).length;
             const totalPages = Math.ceil(totalRows / rowsPerPage);
@@ -211,14 +204,12 @@
             renderTable();
         }
 
-        // Update pagination buttons
         function updatePagination(totalRows) {
             const totalPages = Math.ceil(totalRows / rowsPerPage);
-            const pageNumberElement = document.getElementById('page-number');
-            pageNumberElement.textContent = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById('page-number').textContent = 
+                `Page ${currentPage} of ${totalPages}`;
         }
 
-        // Function to show detailed data in a new page
         function showDetailsInNewPage(entryId) {
             const entry = data[entryId];
             const queryParams = new URLSearchParams({
@@ -232,8 +223,6 @@
                 positions: JSON.stringify(entry.positions || 'N/A'),
                 cell: JSON.stringify(entry.cell || 'N/A')
             });
-
-            // Open a new page with the detailed data in the URL
             window.open(`detail.html?${queryParams.toString()}`, '_blank');
         }
     </script>
