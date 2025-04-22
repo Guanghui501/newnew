@@ -6,193 +6,246 @@
       <title>Material Details - Nemesis</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.1/3Dmol-min.js"></script>
       <style>
-          /* 保持原有样式不变 */
-          body, html {
-              height: 100%;
-              margin: 0;
-              padding: 0;
-              font-family: Arial, sans-serif;
-          }
-          .container {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: center;
-              align-items: flex-start;
-              max-width: 1200px;
-              margin: 20px auto;
-              gap: 20px;
-          }
-          .info {
-              flex: 1;
-              min-width: 300px;
-              max-width: 600px;
-              font-size: 18px;
-              word-break: break-word;
-              padding: 20px;
-              box-sizing: border-box;
-          }
-          .viewer-container {
-              flex: 1;
-              min-width: 300px;
-              max-width: 600px;
-          }
-          #viewer {
-              width: 100%;
-              height: 600px;
-              border: 1px solid #ccc;
-              position: relative;
-          }
-          .info h2 {
-              text-align: center;
-              font-size: 26px;
-              overflow-wrap: break-word;
-              margin-top: 0;
-          }
-          #viewer-message {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              font-size: 16px;
-              color: #666;
-              text-align: center;
-          }
-          .button-container {
-              display: flex;
-              justify-content: center;
-              margin-top: 15px;
-              gap: 10px;
-              flex-wrap: wrap;
-          }
-          .btn {
-              padding: 8px 16px;
-              color: white;
-              border: none;
-              border-radius: 4px;
-              cursor: pointer;
-              font-size: 14px;
-              transition: background-color 0.3s;
-              margin: 2px;
-          }
-          .download-btn {
-              background-color: #4CAF50;
-          }
-          .download-btn:hover {
-              background-color: #45a049;
-          }
-          .toggle-lattice-btn {
-              background-color: #2196F3;
-          }
-          .toggle-lattice-btn:hover {
-              background-color: #0b7dda;
-          }
-          .toggle-labels-btn {
-              background-color: #9C27B0;
-          }
-          .toggle-labels-btn:hover {
-              background-color: #7B1FA2;
-          }
- 
-          /* INCAR参数样式 */
-          .incar-section {
-              margin-top: 25px;
-              border-top: 1px solid #eee;
-              padding-top: 20px;
-          }
-          details {
-              background: #f8f9fa;
-              border-radius: 4px;
-              padding: 10px;
-              margin: 10px 0;
-          }
-          summary {
-              cursor: pointer;
-              font-weight: bold;
-              color: #2c3e50;
-              padding: 8px;
-              outline: none;
-          }
-          .incar-content {
-              background-color: #f4f4f4;
-              border: 1px solid #ddd;
-              border-radius: 4px;
-              padding: 15px;
-              overflow-x: auto;
-              font-family: 'Courier New', Courier, monospace;
-              font-size: 14px;
-              line-height: 1.5;
-              margin-top: 10px;
-              white-space: pre-wrap;
-          }
- 
-          @media (max-width: 768px) {
-              .incar-content {
-                  font-size: 12px;
-                  padding: 10px;
-              }
-              summary {
-                  font-size: 16px;
-              }
-          }
-      </style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --text-color: #2c3e50;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .viewer-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: var(--box-shadow);
+            height: 600px;
+        }
+
+        h2.material-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin: 0 0 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 1rem;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .property-item {
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+        }
+
+        .property-item strong {
+            display: block;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        #viewer {
+            width: 100%;
+            height: 100%;
+            border-radius: var(--border-radius);
+        }
+
+        .incar-section {
+            margin-top: 2rem;
+        }
+
+        details {
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+        }
+
+        summary {
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .incar-content {
+            padding: 1rem;
+            background: white;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .viewer-card {
+                height: 400px;
+            }
+        }
+    </style>
   </head>
   <body>
       <div class="container">
-          <div class="info">
-              <h2 id="formula">加载中...</h2>
-              <p><strong>Space Group:</strong> <span id="space_group"></span></p>
-              <p><strong>Energy:</strong> <span id="energy"></span> eV</p>
-              <p><strong>Mass Density:</strong> <span id="density"></span> g/cm³</p>
-              <p><strong>Nitrogen Concentration:</strong> <span id="n_concentration"></span>%</p>
-              <p><strong>Energy Density (E<sub>d</sub>):</strong> <span id="ed"></span> kJ/g</p>
-              <p><strong>Detonation Velocity (V<sub>d</sub>):</strong> <span id="vd"></span> km/s</p>
-              <p><strong>Detonation Pressure (P<sub>d</sub>):</strong> <span id="pd"></span> GPa</p>
-              <p><strong>Reaction:</strong> <span id="reaction"></span></p>
- 
-              <div class="button-container">
-                  <button id="download-cif" class="btn download-btn" disabled>Download the CIF file</button>
-                  <button id="toggle-lattice" class="btn toggle-lattice-btn" disabled>Display the lattice pattern</button>
-                  <button id="toggle-labels" class="btn toggle-labels-btn" disabled>Display atomic labels</button>
-              </div>
- 
-              <!-- 新增INCAR参数区域 -->
-              <div class="incar-section">
-                  <details>
-                      <summary>VASP Calculation Parameters (INCAR)</summary>
-                      <pre class="incar-content">
-  PREC   = Normal
-  ENCUT  = 520 eV
-  NELMIN= 5
-  LREAL = F    
-  KSPACING = 0.15
-  EDIFF  = 1E-5
-  SIGMA = 0.2
-  ISPIN = 1    
-  KPAR = 4
-  NPAR = 1     
-  # Ionic Relaxation
-  ICHARG = 2
-  EDIFFG = -0.01        
-  NSW    = 300          
-  IBRION = 2
-  POTIM = 0.5
-  ISIF   = 3            
-  PSTRESS= 0
-  LCHARG =  F
-  LWAVE  =  F</pre>
-                  </details>
-                  <button class="btn download-btn" onclick="downloadINCAR()" style="margin-top: 10px;">
-                      Download INCAR
-                  </button>
-              </div>
-          </div>
- 
-          <div class="viewer-container">
-              <div id="viewer">
-                  <div id="viewer-message">加载结构中...</div>
-              </div>
-          </div>
-      </div>
+        <div class="info-card">
+            <h2 class="material-title" id="formula">加载中...</h2>
+            
+            <div class="property-grid">
+                <div class="property-item">
+                    <strong>空间群</strong>
+                    <span id="space_group"></span>
+                </div>
+                <div class="property-item">
+                    <strong>能量</strong>
+                    <span id="energy"></span> eV
+                </div>
+                <div class="property-item">
+                    <strong>密度</strong>
+                    <span id="density"></span> g/cm³
+                </div>
+                <div class="property-item">
+                    <strong>氮含量</strong>
+                    <span id="n_concentration"></span>%
+                </div>
+                <div class="property-item">
+                    <strong>爆轰能量</strong>
+                    <span id="ed"></span> kJ/g
+                </div>
+                <div class="property-item">
+                    <strong>爆速</strong>
+                    <span id="vd"></span> km/s
+                </div>
+                <div class="property-item">
+                    <strong>爆压</strong>
+                    <span id="pd"></span> GPa
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="download-cif" disabled>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px;">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    下载CIF文件
+                </button>
+                <button class="btn btn-secondary" id="toggle-lattice" disabled>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px;">
+                        <path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z"/>
+                    </svg>
+                    晶格显示
+                </button>
+            </div>
+
+            <div class="incar-section">
+                <details>
+                    <summary>VASP计算参数 (INCAR)</summary>
+                    <pre class="incar-content">
+PREC   = Normal
+ENCUT  = 520 eV
+NELMIN= 5
+LREAL = F    
+KSPACING = 0.15
+EDIFF  = 1E-5
+SIGMA = 0.2
+ISPIN = 1    
+KPAR = 4
+NPAR = 1     
+# Ionic Relaxation
+ICHARG = 2
+EDIFFG = -0.01        
+NSW    = 300          
+IBRION = 2
+POTIM = 0.5
+ISIF   = 3            
+PSTRESS= 0
+LCHARG =  F
+LWAVE  =  F</pre>
+                </details>
+                <button class="btn btn-primary" onclick="downloadINCAR()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px;">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    下载INCAR
+                </button>
+            </div>
+        </div>
+
+        <div class="viewer-card">
+            <div id="viewer"></div>
+        </div>
+    </div>
  
       <script>
       const urlParams = new URLSearchParams(window.location.search);
