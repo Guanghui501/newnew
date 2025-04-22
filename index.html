@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitrogen-rich Energetic Materials Information Database (Nemesis)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            flex-direction:column;
+            align-items:center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 30px;;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 22px;
+        }
+        .pagination {
+            margin-top: 20px;
+        }
+        .pagination button {
+            padding: 8px;
+            margin: 0 5px;
+        }
+        #search-box{
+            width: 400px;
+            height: 30px;
+            padding: 8px;
+            margin-bottom: 25px;
+            font-size: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nitrogen-rich Energetic Materials Information Database (Nemesis)</h1>
+
+    <!-- Search Box -->
+    <input type="text" id="search-box" placeholder="Search by formula..." oninput="renderTable()">
+
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th onclick="sortBy('id')">ID</th>
+                <th onclick="sortBy('formula')">Formula</th>
+                <th onclick="sortBy('energy')"><span id="th-energy">Energy (eV)</span></th>
+                <th onclick="sortBy('mass_density')"><span id="th-mass_density">Mass Density (g/cm<sup>3</sup>)</span></th>
+                <th onclick="sortBy('N_concentration')"><span id="th-N_concentration">N Concentration (%)</span></th>
+                <th onclick="sortBy('E<sub>d</sub>')"><span id="th-E_d">E_d (kJ/g)</span></th>
+                <th onclick="sortBy('V<sub>d</sub>')"><span id="th-V_d">V_d (km/s)</span></th>
+                <th onclick="sortBy('P<sub>d</sub>')"><span id="th-P_d">P_d (GPa)</span></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button onclick="changePage('prev')">Prev</button>
+        <span id="page-number">Page 1</span>
+        <button onclick="changePage('next')">Next</button>
+    </div>
+
+    <script>
+        function toSubscript(text) {
+             const subscriptMap = {
+                '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+                '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉'
+             };
+             return text.replace(/\d/g, digit => subscriptMap[digit] || digit);
+        }
+
+        function formatNumber(value) {
+            if (value === undefined || value === null || isNaN(value)) {
+                return 'N/A'
+            }
+            return parseFloat(value).toFixed(3);
+        }
+        let sortColumn = null;
+        let sortDirection = 'desc';
+
+        let data = {};
+        let currentPage = 1;
+        const rowsPerPage = 20;
+
+        // Fetch the JSON data
+        fetch('db.json')
+            .then(response => response.json())
+            .then(jsonData => {
+                data = jsonData;
+                renderTable();
+            })
+            .catch(error => {
+                console.error('Error loading JSON data:', error);
+            });
+
+        function sortBy(column) {
+            if (sortColumn === column) {
+                sortDirection = (sortDirection === 'asc') ? 'desc' : 'asc';
+            } else {
+                sortColumn = column;
+                sortDirection = 'desc'; // 默认第一次是降序
+            }
+            renderTable();
+        }
+
+        // Render table with current page and search query
+        function renderTable() {
+            const tableBody = document.querySelector('#data-table tbody');
+            tableBody.innerHTML = '';  // Clear existing rows
+
+            const searchQuery = document.getElementById('search-box').value.toLowerCase();
+            const filteredData = Object.entries(data).filter(([entryId, entry]) =>
+                entry.formula.toLowerCase().includes(searchQuery)
+            );
+
+        function updateSortArrows() {
+            const allHeaders = ['energy', 'mass_density', 'N_concentration', 'E_d', 'V_d', 'P_d'];
+            allHeaders.forEach(header => {
+                const thSpan = document.getElementById('th-' + header);
+                if (thSpan) {
+                    if (sortColumn === header) {
+                        thSpan.textContent = getColumnDisplayName(header) + (sortDirection === 'asc' ? ' ↑' : ' ↓');
+                    } else {
+                        thSpan.textContent = getColumnDisplayName(header);
+                    }
+                }
+            });
+        }
+    
+        function getColumnDisplayName(col) {
+            switch (col) {
+                case 'energy': return 'Energy (eV)';
+                case 'mass_density': return 'Mass Density (g/cm³)';
+                case 'N_concentration': return 'N Concentration (%)';
+                case 'E_d': return 'E_d (kJ/g)';
+                case 'V_d': return 'V_d (km/s)';
+                case 'P_d': return 'P_d (GPa)';
+                default: return col;
+            }
+        }
+    
+        // 排序
+        if (sortColumn) {
+           filteredData.sort((a, b) => {
+                let aVal = sortColumn === 'id' ? parseInt(a[0]) : a[1][sortColumn];
+                let bVal = sortColumn === 'id' ? parseInt(b[0]) : b[1][sortColumn];
+
+                if (aVal === undefined || aVal === null) aVal = -Infinity;
+                if (bVal === undefined || bVal === null) bVal = -Infinity;
+
+                if (typeof aVal === 'number' && typeof bVal === 'number') {
+                    return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+                } else {
+                    return sortDirection === 'asc'
+                        ? String(aVal).localeCompare(String(bVal))
+                        : String(bVal).localeCompare(String(aVal));
+                }
+            });
+        }
+
+            const startIndex = (currentPage - 1) * rowsPerPage;
+            const endIndex = currentPage * rowsPerPage;
+            const paginatedData = filteredData.slice(startIndex, endIndex);
+
+            paginatedData.forEach(([entryId, entry]) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${entryId}</td>
+                    <td>${toSubscript(entry.formula)}</td>
+                    <td>${formatNumber(entry.energy)}</td>
+                    <td>${formatNumber(entry.mass_density) || 'N/A'}</td>
+                    <td>${formatNumber(entry.N_concentration) || 'N/A'}</td>
+                    <td>${formatNumber(entry.E_d) || 'N/A'}</td>
+                    <td>${formatNumber(entry.V_d) || 'N/A'}</td>
+                    <td>${formatNumber(entry.P_d) || 'N/A'}</td>
+                `;
+                // Add click event to open new page with detailed data
+                row.addEventListener('click', () => showDetailsInNewPage(entryId));
+                tableBody.appendChild(row);
+            });
+
+            updatePagination(filteredData.length);
+            updateSortArrows();
+        }
+
+        // Change page (prev/next)
+        function changePage(direction) {
+            const totalRows = Object.keys(data).length;
+            const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+            if (direction === 'prev' && currentPage > 1) {
+                currentPage--;
+            } else if (direction === 'next' && currentPage < totalPages) {
+                currentPage++;
+            }
+            renderTable();
+        }
+
+        // Update pagination buttons
+        function updatePagination(totalRows) {
+            const totalPages = Math.ceil(totalRows / rowsPerPage);
+            const pageNumberElement = document.getElementById('page-number');
+            pageNumberElement.textContent = `Page ${currentPage} of ${totalPages}`;
+        }
+
+        // Function to show detailed data in a new page
+        function showDetailsInNewPage(entryId) {
+            const entry = data[entryId];
+            const queryParams = new URLSearchParams({
+                id: entryId,
+                formula: entry.formula,
+                energy: entry.energy,
+                mass_density: entry.mass_density || 'N/A',
+                N_concentration: entry.N_concentration || 'N/A',
+                E_d: entry.E_d || 'N/A',
+                V_d: entry.V_d || 'N/A',
+                P_d: entry.P_d || 'N/A',
+                positions: JSON.stringify(entry.positions || 'N/A'),
+                cell: JSON.stringify(entry.cell || 'N/A')
+            });
+
+            // Open a new page with the detailed data in the URL
+            window.open(`detail.html?${queryParams.toString()}`, '_blank');
+        }
+    </script>
+</body>
+</html>
