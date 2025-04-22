@@ -133,6 +133,15 @@
                 font-size: 16px;
             }
         }
+         #reaction {
+            font-size: 1.1em;
+            color: #2c3e50;
+            padding: 5px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            display: inline-block;
+            font-family: 'Times New Roman', serif;
+        }
     </style>
 </head>
 <body>
@@ -145,6 +154,7 @@
             <p><strong>Energy Density (E<sub>d</sub>):</strong> <span id="ed"></span> kJ/g</p>
             <p><strong>Detonation Velocity (V<sub>d</sub>):</strong> <span id="vd"></span> km/s</p>
             <p><strong>Detonation Pressure (P<sub>d</sub>):</strong> <span id="pd"></span> GPa</p>
+            <p><strong>Reaction:</strong> <span id="reaction"></span></p>
             
             <div class="button-container">
                 <button id="download-cif" class="btn download-btn" disabled>Download the CIF file</button>
@@ -360,6 +370,19 @@ LWAVE  =  F</pre>
         return formula.replace(/([A-Za-z]+)(\d*)/g, (_, elem, num) => 
             num ? `${elem}<sub>${num}</sub>` : elem
         );
+    }
+    function formatReaction(reaction) {
+        return reaction
+            // 转换箭头符号
+            .replace(/->/g, '&rarr;')
+            // 处理化学式中的数字下标
+            .replace(/([A-Z][a-z]*)(\d+)/g, (_, elem, num) => 
+                `${elem}<sub>${num}</sub>`
+            )
+            // 保留系数中的数字不变
+            .replace(/(\d+)(\s*)([A-Z])/g, (_, coeff, space, elem) => 
+                `${coeff}${space}${elem}`
+            );
     }
     </script>
 </body>
