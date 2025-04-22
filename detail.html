@@ -142,6 +142,10 @@
             display: inline-block;
             font-family: 'Times New Roman', serif;
         }
+        #reaction sub {
+            font-size: 0.8em;
+            vertical-align: sub;
+        }
     </style>
 </head>
 <body>
@@ -371,18 +375,27 @@ LWAVE  =  F</pre>
             num ? `${elem}<sub>${num}</sub>` : elem
         );
     }
+    
+    // 修改反应式渲染部分
+    const reactionElem = document.getElementById('reaction');
+        if (material.reaction) {
+            reactionElem.innerHTML = formatReaction(material.reaction);
+        } else {
+            reactionElem.textContent = 'N/A';
+        }
+    }
+
+    // 新增反应式格式化函数
     function formatReaction(reaction) {
         return reaction
-            // 转换箭头符号
+            // 转换箭头为HTML实体
             .replace(/->/g, '&rarr;')
-            // 处理化学式中的数字下标
-            .replace(/([A-Z][a-z]*)(\d+)/g, (_, elem, num) => 
-                `${elem}<sub>${num}</sub>`
-            )
-            // 保留系数中的数字不变
-            .replace(/(\d+)(\s*)([A-Z])/g, (_, coeff, space, elem) => 
-                `${coeff}${space}${elem}`
-            );
+            // 格式化化学式下标
+            .replace(/([A-Z][a-z]*?)(\d+)/g, (_, elem, num) => {
+                return `${elem}<sub>${num}</sub>`;
+            })
+            // （可选）在系数和元素间添加空格
+            .replace(/(\d+)(?=[A-Z])/g, '$1 ');
     }
     </script>
 </body>
