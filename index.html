@@ -57,7 +57,6 @@
             <tr>
                 <th onclick="sortBy('id')">ID</th>
                 <th onclick="sortBy('formula')">Formula</th>
-                <th onclick="sortBy('energy')"><span id="th-energy">Energy (eV)</span></th>
                 <th onclick="sortBy('mass_density')"><span id="th-mass_density">Mass Density (g/cm<sup>3</sup>)</span></th>
                 <th onclick="sortBy('N_concentration')"><span id="th-N_concentration">N Concentration (%)</span></th>
                 <th onclick="sortBy('E<sub>d</sub>')"><span id="th-E_d">E_d (kJ/g)</span></th>
@@ -132,7 +131,7 @@
             );
 
         function updateSortArrows() {
-            const allHeaders = ['energy', 'mass_density', 'N_concentration', 'E_d', 'V_d', 'P_d'];
+            const allHeaders = ['mass_density', 'N_concentration', 'E_d', 'V_d', 'P_d'];
             allHeaders.forEach(header => {
                 const thSpan = document.getElementById('th-' + header);
                 if (thSpan) {
@@ -147,7 +146,6 @@
     
         function getColumnDisplayName(col) {
             switch (col) {
-                case 'energy': return 'Energy (eV)';
                 case 'mass_density': return 'Mass Density (g/cm³)';
                 case 'N_concentration': return 'N Concentration (%)';
                 case 'E_d': return 'E_d (kJ/g)';
@@ -185,7 +183,6 @@
                 row.innerHTML = `
                     <td>${entryId}</td>
                     <td>${toSubscript(entry.formula)}</td>
-                    <td>${formatNumber(entry.energy)}</td>
                     <td>${formatNumber(entry.mass_density) || 'N/A'}</td>
                     <td>${formatNumber(entry.N_concentration) || 'N/A'}</td>
                     <td>${formatNumber(entry.E_d) || 'N/A'}</td>
@@ -227,7 +224,6 @@
             const queryParams = new URLSearchParams({
                 id: entryId,
                 formula: entry.formula,
-                energy: entry.energy,
                 mass_density: entry.mass_density || 'N/A',
                 N_concentration: entry.N_concentration || 'N/A',
                 E_d: entry.E_d || 'N/A',
