@@ -224,12 +224,16 @@
           document.getElementById('formula').innerText = msg;
           document.getElementById('viewer-message').innerText = msg;
       }
- 
+        
+     function italicizeLettersOnly(str) {
+        return str.replace(/[A-Za-z]+/g, match => `<em>${match}</em>`);
+    }
+        
       function updateMaterialInfo(material) {
           document.getElementById('formula').innerHTML = formatFormula(material.formula);
-          document.getElementById('space_group').innerText = 
-              material.space_group_symbol 
-                  ? `${material.space_group_symbol} (#${material.space_group_number})` 
+          document.getElementById('space_group').innerHTML =
+              material.space_group_symbol && material.space_group_number
+                  ? `${italicizeLettersOnly(material.space_group_symbol)} (No. ${material.space_group_number})`
                   : 'N/A';
           document.getElementById('energy').innerText = material.energy?.toFixed(3) ?? 'N/A';
           document.getElementById('density').innerText = material.mass_density?.toFixed(3) ?? 'N/A';
