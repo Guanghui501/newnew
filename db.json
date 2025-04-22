@@ -64,6 +64,7 @@
     "E_d": 0.0195791348724368,
     "V_d": 1.9117350059608849,
     "P_d": 2.635769891551991,
+    "reaction": "1 Cd2N4 -> 2 CdN + 1 N2",
     "space_group_symbol": "P4/mbm",
     "space_group_number": 127
   },
@@ -240,6 +241,7 @@
     "E_d": 0.996610983309854,
     "V_d": 2.956129651464312,
     "P_d": 3.918309555106047,
+    "reaction": "1 K4N20 -> 4 KN3 + 4 N2",
     "space_group_symbol": "Pnma",
     "space_group_number": 62
   },
@@ -344,6 +346,7 @@
     "E_d": 2.430183853640767,
     "V_d": 5.696875478601995,
     "P_d": 12.44340012175246,
+    "reaction": "3 Li2N10 -> 2 Li3N + 14 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -406,6 +409,7 @@
     "E_d": 1.039951104249676,
     "V_d": 3.2405601088078786,
     "P_d": 5.356489647007891,
+    "reaction": "3 SnN4 -> 1 Sn3N4 + 4 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -510,6 +514,7 @@
     "E_d": 1.1261325731791283,
     "V_d": 5.639086642697275,
     "P_d": 18.419769405284768,
+    "reaction": "2 Sr2N10 -> 2 Sr2N + 9 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -590,6 +595,7 @@
     "E_d": 1.5283749472998778,
     "V_d": 6.3539917979820935,
     "P_d": 27.00205507356769,
+    "reaction": "1 Y2N6 -> 2 YN + 2 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -676,6 +682,7 @@
     "E_d": 4.012127875818674,
     "V_d": 10.089663865862477,
     "P_d": 63.5105500632861,
+    "reaction": "2 YN8 -> 2 YN + 7 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -1236,6 +1243,7 @@
     "E_d": 3.1662471098114406,
     "V_d": 7.564411160842931,
     "P_d": 27.44489397518985,
+    "reaction": "3 Mg8N80 -> 8 Mg3N2 + 112 N2",
     "space_group_symbol": "Fdd2",
     "space_group_number": 43
   },
@@ -1676,6 +1684,7 @@
     "E_d": 6.015984232524173,
     "V_d": 8.401192617961543,
     "P_d": 34.24942448983148,
+    "reaction": "1 Al8N60 -> 8 AlN + 26 N2",
     "space_group_symbol": "C222₁",
     "space_group_number": 20
   },
@@ -1780,6 +1789,7 @@
     "E_d": 7.408770366639514,
     "V_d": 8.190888249555123,
     "P_d": 25.79741028757803,
+    "reaction": "1 N12 -> 6 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -1836,6 +1846,7 @@
     "E_d": 1.7202616570881653,
     "V_d": 4.246962576667493,
     "P_d": 4.6565085050927255,
+    "reaction": "1 N4 -> 2 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -2156,6 +2167,7 @@
     "E_d": 0.9063055575835404,
     "V_d": 3.630880969914388,
     "P_d": 8.161107658719162,
+    "reaction": "1 Cs8N40 -> 8 CsN3 + 8 N2",
     "space_group_symbol": "Cmc2₁",
     "space_group_number": 36
   },
@@ -2284,6 +2296,7 @@
     "E_d": 2.128166113180087,
     "V_d": 10.322663116398545,
     "P_d": 73.76487578120397,
+    "reaction": "3 Fe4N12 -> 4 Fe3N + 16 N2",
     "space_group_symbol": "P2₁/c",
     "space_group_number": 14
   },
@@ -2460,6 +2473,7 @@
     "E_d": 3.9651391630370822,
     "V_d": 9.799409149221423,
     "P_d": 61.61466714379078,
+    "reaction": "1 Ga4N20 -> 4 GaN + 8 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -2600,6 +2614,7 @@
     "E_d": 2.158657794773499,
     "V_d": 7.912022099853276,
     "P_d": 39.41536966555066,
+    "reaction": "1 La2N16 -> 2 LaN + 7 N2",
     "space_group_symbol": "Cm",
     "space_group_number": 8
   },
@@ -2692,6 +2707,7 @@
     "E_d": 1.2118668009103672,
     "V_d": 7.406124141850202,
     "P_d": 38.19966151235128,
+    "reaction": "1 Cd2N8 -> 2 CdN + 3 N2",
     "space_group_symbol": "Cmmm",
     "space_group_number": 65
   },
@@ -2796,6 +2812,7 @@
     "E_d": 6.200846945758186,
     "V_d": 7.820756119327783,
     "P_d": 34.66292788149041,
+    "reaction": "3 Mg4N8 -> 4 Mg3N2 + 8 N2",
     "space_group_symbol": "Cmmm",
     "space_group_number": 65
   },
@@ -2864,6 +2881,7 @@
     "E_d": 5.278031163176308,
     "V_d": 9.437769289663535,
     "P_d": 47.485036420345466,
+    "reaction": "1 C2N4 -> 2 C + 2 N2",
     "space_group_symbol": "P-42₁m",
     "space_group_number": 113
   },
@@ -3184,6 +3202,7 @@
     "E_d": 2.585642281827585,
     "V_d": 6.298217107734567,
     "P_d": 15.664640224398074,
+    "reaction": "1 H20N28 -> 10 H2 + 14 N2",
     "space_group_symbol": "P2₁/c",
     "space_group_number": 14
   },
@@ -3312,6 +3331,7 @@
     "E_d": 1.258818250215343,
     "V_d": 7.102141171797808,
     "P_d": 35.855073233452686,
+    "reaction": "1 Ir2N14 -> 2 IrN3 + 4 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -3428,6 +3448,7 @@
     "E_d": 1.7204077771028323,
     "V_d": 5.852664302546766,
     "P_d": 19.84747436401211,
+    "reaction": "2 Ba2N12 -> 2 Ba2N + 11 N2",
     "space_group_symbol": "P2₁/m",
     "space_group_number": 11
   },
@@ -4132,6 +4153,7 @@
     "E_d": 2.2641226475082243,
     "V_d": 7.509008889293978,
     "P_d": 35.41262225452407,
+    "reaction": "1 Ba16N96 -> 8 Ba2N + 44 N2",
     "space_group_symbol": "I-43d",
     "space_group_number": 220
   },
@@ -4176,6 +4198,7 @@
     "E_d": 1.7662465113392225,
     "V_d": 2.111029350153183,
     "P_d": 0.0132114559390889,
+    "reaction": "1 N2 -> 1 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -4736,6 +4759,7 @@
     "E_d": 5.050613535086939,
     "V_d": 8.797082281468287,
     "P_d": 36.71254869181785,
+    "reaction": "3 Be8N80 -> 8 Be3N2 + 112 N2",
     "space_group_symbol": "Fdd2",
     "space_group_number": 43
   },
@@ -4816,6 +4840,7 @@
     "E_d": 12.007643258850244,
     "V_d": 15.785643564310746,
     "P_d": 142.8417749310884,
+    "reaction": "1 N8 -> 4 N2",
     "space_group_symbol": "Cmce",
     "space_group_number": 64
   },
@@ -4884,6 +4909,7 @@
     "E_d": 0.8398126450268653,
     "V_d": 7.490873391546568,
     "P_d": 39.59265403316903,
+    "reaction": "3 Fe2N4 -> 2 Fe3N + 5 N2",
     "space_group_symbol": "P2₁/m",
     "space_group_number": 11
   },
@@ -4988,6 +5014,7 @@
     "E_d": 4.846702955540303,
     "V_d": 11.779584811316775,
     "P_d": 93.24757745548746,
+    "reaction": "1 Ga2N10 -> 2 GaN + 4 N2",
     "space_group_symbol": "P2₁/m",
     "space_group_number": 11
   },
@@ -5092,6 +5119,7 @@
     "E_d": 3.481586499783357,
     "V_d": 9.49885428740824,
     "P_d": 59.27596712217308,
+    "reaction": "1 Y2N10 -> 2 YN + 4 N2",
     "space_group_symbol": "P2₁/m",
     "space_group_number": 11
   },
@@ -5244,6 +5272,7 @@
     "E_d": 1.8486045901132813,
     "V_d": 10.203532575960516,
     "P_d": 79.10591121288623,
+    "reaction": "1 Ta4N16 -> 4 TaN + 6 N2",
     "space_group_symbol": "P2₁/c",
     "space_group_number": 14
   },
@@ -5348,6 +5377,7 @@
     "E_d": 1.3886418384754329,
     "V_d": 3.63903739134054,
     "P_d": 6.159409697536765,
+    "reaction": "1 Na2N10 -> 2 NaN3 + 2 N2",
     "space_group_symbol": "P2/c",
     "space_group_number": 13
   },
@@ -5476,6 +5506,7 @@
     "E_d": 0.9203786317867904,
     "V_d": 4.576123200665809,
     "P_d": 7.827433383777513,
+    "reaction": "1 H8N8 -> 4 H2 + 4 N2",
     "space_group_symbol": "P2/c",
     "space_group_number": 13
   },
@@ -5538,6 +5569,7 @@
     "E_d": 2.281378184576299,
     "V_d": 5.561152674595492,
     "P_d": 14.055499659904564,
+    "reaction": "3 MgN4 -> 1 Mg3N2 + 5 N2",
     "space_group_symbol": "P2/m",
     "space_group_number": 10
   },
@@ -5630,6 +5662,7 @@
     "E_d": 5.737282922195867,
     "V_d": 7.893285229006203,
     "P_d": 35.61882883217954,
+    "reaction": "1 Co2N8 -> 2 CoN + 3 N2",
     "space_group_symbol": "Cc",
     "space_group_number": 9
   },
@@ -5890,6 +5923,7 @@
     "E_d": 1.4919814130468876,
     "V_d": 6.355522862913468,
     "P_d": 27.429050977800667,
+    "reaction": "1 Y10N28 -> 10 YN + 9 N2",
     "space_group_symbol": "P4/mbm",
     "space_group_number": 127
   },
@@ -5952,6 +5986,7 @@
     "E_d": 4.735125693324672,
     "V_d": 12.749917064001936,
     "P_d": 110.49317201400588,
+    "reaction": "4 MnN4 -> 2 Mn2N + 7 N2",
     "space_group_symbol": "P4/mmm",
     "space_group_number": 123
   },
@@ -6104,6 +6139,7 @@
     "E_d": 1.6206938823856454,
     "V_d": 4.130912033626386,
     "P_d": 4.5717857862208495,
+    "reaction": "1 He4N16 -> 4 He + 8 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -6196,6 +6232,7 @@
     "E_d": 3.670820947774749,
     "V_d": 7.125094355124995,
     "P_d": 35.26538413650975,
+    "reaction": "3 Zn4N6 -> 4 Zn3N2 + 5 N2",
     "space_group_symbol": "Cmcm",
     "space_group_number": 63
   },
@@ -6360,6 +6397,7 @@
     "E_d": 12.122784286825128,
     "V_d": 15.819616433723391,
     "P_d": 144.4678711841269,
+    "reaction": "1 He2N20 -> 2 He + 10 N2",
     "space_group_symbol": "P2₁/m",
     "space_group_number": 11
   },
@@ -6500,6 +6538,7 @@
     "E_d": 5.450577573587574,
     "V_d": 8.513056007582716,
     "P_d": 40.78177684185114,
+    "reaction": "1 K2N16 -> 2 KN3 + 5 N2",
     "space_group_symbol": "Cccm",
     "space_group_number": 66
   },
@@ -6622,6 +6661,7 @@
     "E_d": 8.180319031462231,
     "V_d": 15.80535366666784,
     "P_d": 168.55285176781828,
+    "reaction": "2 CeN14 -> 2 CeN + 13 N2",
     "space_group_symbol": "Cmm2",
     "space_group_number": 35
   },
@@ -6762,6 +6802,7 @@
     "E_d": 8.62778329720246,
     "V_d": 15.761984596980763,
     "P_d": 164.3281055435814,
+    "reaction": "1 CeN17 -> 1 CeN + 8 N2",
     "space_group_symbol": "Cmm2",
     "space_group_number": 35
   },
@@ -6962,6 +7003,7 @@
     "E_d": 4.851551610871876,
     "V_d": 10.088525687394425,
     "P_d": 64.27890669300527,
+    "reaction": "3 Ge4N24 -> 4 Ge3N4 + 28 N2",
     "space_group_symbol": "Pa-3",
     "space_group_number": 205
   },
@@ -7066,6 +7108,7 @@
     "E_d": 0.6408247831392465,
     "V_d": 4.01316044950799,
     "P_d": 11.865781852921591,
+    "reaction": "3 Sn4N8 -> 4 Sn3N4 + 4 N2",
     "space_group_symbol": "Pa-3",
     "space_group_number": 205
   },
@@ -7158,6 +7201,7 @@
     "E_d": 6.941378270514983,
     "V_d": 10.33386373445128,
     "P_d": 51.60585353611605,
+    "reaction": "1 H2N8 -> 1 H2 + 4 N2",
     "space_group_symbol": "Pbam",
     "space_group_number": 55
   },
@@ -7502,6 +7546,7 @@
     "E_d": 6.808809745869907,
     "V_d": 11.36430719168382,
     "P_d": 67.13966057760713,
+    "reaction": "1 H16N36 -> 8 H2 + 18 N2",
     "space_group_symbol": "Ccc2",
     "space_group_number": 37
   },
@@ -7654,6 +7699,7 @@
     "E_d": 0.8409756838840448,
     "V_d": 5.9400100432732,
     "P_d": 22.361101379565905,
+    "reaction": "1 Sr4N16 -> 2 Sr2N + 7 N2",
     "space_group_symbol": "C2/c",
     "space_group_number": 15
   },
@@ -7806,6 +7852,7 @@
     "E_d": 2.9976150794815744,
     "V_d": 9.780719595002424,
     "P_d": 63.34394009513409,
+    "reaction": "3 Zn4N16 -> 4 Zn3N2 + 20 N2",
     "space_group_symbol": "C2/c",
     "space_group_number": 15
   },
@@ -8078,6 +8125,7 @@
     "E_d": 1.8439570992861585,
     "V_d": 5.309574906315913,
     "P_d": 10.108830244465146,
+    "reaction": "1 H16N24 -> 8 H2 + 12 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -8146,6 +8194,7 @@
     "E_d": 0.9609755855467268,
     "V_d": 6.290303181954212,
     "P_d": 26.386171432704163,
+    "reaction": "3 Ni2N4 -> 2 Ni3N + 5 N2",
     "space_group_symbol": "P4/mbm",
     "space_group_number": 127
   },
@@ -8310,6 +8359,7 @@
     "E_d": 3.826172581026547,
     "V_d": 7.96611721556754,
     "P_d": 32.246157030953306,
+    "reaction": "3 Ni2N20 -> 2 Ni3N + 29 N2",
     "space_group_symbol": "P2₁/c",
     "space_group_number": 14
   },
@@ -8486,6 +8536,7 @@
     "E_d": 8.330004651338795,
     "V_d": 10.310111222271392,
     "P_d": 49.18557788993967,
+    "reaction": "1 N24 -> 12 N2",
     "space_group_symbol": "P2₁₂₁₂₁",
     "space_group_number": 19
   },
@@ -8608,6 +8659,7 @@
     "E_d": 4.3284062974652215,
     "V_d": 7.926713337395932,
     "P_d": 30.58009835053929,
+    "reaction": "1 Be3N12 -> 1 Be3N2 + 5 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -8700,6 +8752,7 @@
     "E_d": 4.795348374975435,
     "V_d": 7.935862313385752,
     "P_d": 30.1027278608629,
+    "reaction": "3 Be2N8 -> 2 Be3N2 + 10 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -8780,6 +8833,7 @@
     "E_d": 5.007131728044513,
     "V_d": 7.711409638194552,
     "P_d": 32.8048765696382,
+    "reaction": "2 Ca2N6 -> 2 Ca2N + 5 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -8878,6 +8932,7 @@
     "E_d": 5.375065332054899,
     "V_d": 9.964693149758174,
     "P_d": 56.01143812682509,
+    "reaction": "2 CoN10 -> 2 CoN + 9 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -8940,6 +8995,7 @@
     "E_d": 2.7831069154995927,
     "V_d": 9.44294480958809,
     "P_d": 59.218863925140376,
+    "reaction": "2 CoN4 -> 2 CoN + 3 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -9188,6 +9244,7 @@
     "E_d": 0.5331725899059715,
     "V_d": 2.470321764607754,
     "P_d": 3.339320224089792,
+    "reaction": "1 Cs6N30 -> 6 CsN3 + 6 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -9286,6 +9343,7 @@
     "E_d": 1.817918699105333,
     "V_d": 9.82268295177239,
     "P_d": 67.39474107376147,
+    "reaction": "2 Fe3N8 -> 2 Fe3N + 7 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -9378,6 +9436,7 @@
     "E_d": 2.957407396546423,
     "V_d": 11.30837431279128,
     "P_d": 86.34297496259126,
+    "reaction": "3 Fe2N8 -> 2 Fe3N + 11 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -9440,6 +9499,7 @@
     "E_d": 0.7670060141030114,
     "V_d": 4.804407812712216,
     "P_d": 14.85511418007901,
+    "reaction": "2 LaN4 -> 2 LaN + 3 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -9520,6 +9580,7 @@
     "E_d": 3.723006299228928,
     "V_d": 8.332235126501494,
     "P_d": 39.95244806297596,
+    "reaction": "3 Mg2N6 -> 2 Mg3N2 + 7 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -9612,6 +9673,7 @@
     "E_d": 3.1175419465484646,
     "V_d": 11.20752158641174,
     "P_d": 84.73109558056922,
+    "reaction": "2 Mn2N8 -> 2 Mn2N + 7 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -9716,6 +9778,7 @@
     "E_d": 4.025390438284087,
     "V_d": 11.647471747077796,
     "P_d": 88.76982525667155,
+    "reaction": "2 Mn2N10 -> 2 Mn2N + 9 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -9790,6 +9853,7 @@
     "E_d": 1.502467451020626,
     "V_d": 5.466468226525063,
     "P_d": 14.775853089866178,
+    "reaction": "4 MnN6 -> 2 Mn2N + 11 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -9852,6 +9916,7 @@
     "E_d": 0.8493489598671687,
     "V_d": 5.112284498481613,
     "P_d": 18.781496911557834,
+    "reaction": "1 PtN4 -> 1 PtN2 + 1 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -9956,6 +10021,7 @@
     "E_d": 1.5923188075286137,
     "V_d": 8.086721269837755,
     "P_d": 48.3536678551972,
+    "reaction": "1 Pt2N10 -> 2 PtN2 + 3 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -10060,6 +10126,7 @@
     "E_d": 6.467203217805502,
     "V_d": 10.994831983856432,
     "P_d": 68.17377133981037,
+    "reaction": "1 ScN11 -> 1 ScN + 5 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -10146,6 +10213,7 @@
     "E_d": 6.71340609038386,
     "V_d": 10.895135015506012,
     "P_d": 68.39158386038753,
+    "reaction": "2 ScN8 -> 2 ScN + 7 N2",
     "space_group_symbol": "P-1",
     "space_group_number": 2
   },
@@ -10298,6 +10366,7 @@
     "E_d": 3.377307432672073,
     "V_d": 6.631880010689177,
     "P_d": 23.338534196473866,
+    "reaction": "3 Sn2N18 -> 2 Sn3N4 + 23 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -10462,6 +10531,7 @@
     "E_d": 2.783111867211064,
     "V_d": 6.773682420723302,
     "P_d": 25.10209430490279,
+    "reaction": "1 Pd2N20 -> 2 PdN2 + 8 N2",
     "space_group_symbol": "P2₁/c",
     "space_group_number": 14
   },
@@ -10554,6 +10624,7 @@
     "E_d": 1.658258554572189,
     "V_d": 7.05367657502152,
     "P_d": 30.18932435769968,
+    "reaction": "1 LaN9 -> 1 LaN + 4 N2",
     "space_group_symbol": "Pm-3",
     "space_group_number": 200
   },
@@ -10670,6 +10741,7 @@
     "E_d": 3.50391046261055,
     "V_d": 10.935997358082483,
     "P_d": 82.00511507011628,
+    "reaction": "1 Cd2N12 -> 2 CdN + 5 N2",
     "space_group_symbol": "C2/m",
     "space_group_number": 12
   },
@@ -10798,6 +10870,7 @@
     "E_d": 2.00487969655706,
     "V_d": 6.12265600800284,
     "P_d": 19.799583652816388,
+    "reaction": "3 Mg4N12 -> 4 Mg3N2 + 14 N2",
     "space_group_symbol": "C2/m",
     "space_group_number": 12
   },
@@ -10926,6 +10999,7 @@
     "E_d": 1.805728130441577,
     "V_d": 4.962223164266933,
     "P_d": 16.900282210376446,
+    "reaction": "1 Mn8N8 -> 4 Mn2N + 2 N2",
     "space_group_symbol": "C2/m",
     "space_group_number": 12
   },
@@ -11042,6 +11116,7 @@
     "E_d": 4.140748833749638,
     "V_d": 11.705355390277624,
     "P_d": 88.07280053949302,
+    "reaction": "2 Mn2N12 -> 2 Mn2N + 11 N2",
     "space_group_symbol": "C2/m",
     "space_group_number": 12
   },
@@ -11266,6 +11341,7 @@
     "E_d": 0.737355245182346,
     "V_d": 4.216727379512761,
     "P_d": 6.450632864170556,
+    "reaction": "1 H16N16 -> 8 H2 + 8 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -11538,6 +11614,7 @@
     "E_d": 4.836098986392887,
     "V_d": 6.058284293940593,
     "P_d": 21.474922316654258,
+    "reaction": "3 Sn8N32 -> 8 Sn3N4 + 32 N2",
     "space_group_symbol": "Fd-3m",
     "space_group_number": 227
   },
@@ -11750,6 +11827,7 @@
     "E_d": 3.043530368255518,
     "V_d": 9.09780599884541,
     "P_d": 55.963290122949736,
+    "reaction": "1 Ge6N24 -> 2 Ge3N4 + 8 N2",
     "space_group_symbol": "R3c",
     "space_group_number": 161
   },
@@ -11962,6 +12040,7 @@
     "E_d": 0.9068901118486906,
     "V_d": 5.380777217700099,
     "P_d": 22.41835268835154,
+    "reaction": "1 Ir6N24 -> 6 IrN3 + 3 N2",
     "space_group_symbol": "R3c",
     "space_group_number": 161
   },
@@ -12066,6 +12145,7 @@
     "E_d": 2.0707646884650086,
     "V_d": 7.248949767445432,
     "P_d": 37.443600765964646,
+    "reaction": "1 Ce3N9 -> 3 CeN + 3 N2",
     "space_group_symbol": "R3m",
     "space_group_number": 160
   },
@@ -12224,6 +12304,7 @@
     "E_d": 12.108512222147755,
     "V_d": 13.65825219661751,
     "P_d": 99.8649555452636,
+    "reaction": "1 He3N18 -> 3 He + 9 N2",
     "space_group_symbol": "C2/m",
     "space_group_number": 12
   },
@@ -12448,6 +12529,7 @@
     "E_d": 3.154565896711973,
     "V_d": 6.85101749901355,
     "P_d": 23.47153240342637,
+    "reaction": "1 Rh2N30 -> 2 RhN2 + 13 N2",
     "space_group_symbol": "P2₁/m",
     "space_group_number": 11
   },
@@ -12744,6 +12826,7 @@
     "E_d": 0.1474477837907418,
     "V_d": 3.4736097735067677,
     "P_d": 7.8458050081105135,
+    "reaction": "1 Sr12N32 -> 6 Sr2N + 13 N2",
     "space_group_symbol": "I4₁/amd",
     "space_group_number": 141
   },
@@ -12872,6 +12955,7 @@
     "E_d": 1.1720358594668878,
     "V_d": 6.373991511113644,
     "P_d": 26.749225302792453,
+    "reaction": "1 Sr4N12 -> 2 Sr2N + 5 N2",
     "space_group_symbol": "C2/m",
     "space_group_number": 12
   },
@@ -13480,6 +13564,7 @@
     "E_d": 2.3220830668982706,
     "V_d": 12.535720940449943,
     "P_d": 120.11886985858636,
+    "reaction": "1 Ta16N80 -> 16 TaN + 32 N2",
     "space_group_symbol": "Fdd2",
     "space_group_number": 43
   },
@@ -13608,6 +13693,7 @@
     "E_d": 4.697923141692743,
     "V_d": 7.393348190110242,
     "P_d": 29.70835228749163,
+    "reaction": "1 Ca4N12 -> 2 Ca2N + 5 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -13700,6 +13786,7 @@
     "E_d": 4.247962800285017,
     "V_d": 7.231821379121229,
     "P_d": 26.958771127408177,
+    "reaction": "2 Ca2N8 -> 2 Ca2N + 7 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -13852,6 +13939,7 @@
     "E_d": 1.804282931302858,
     "V_d": 8.980666254499841,
     "P_d": 58.630929286634064,
+    "reaction": "1 Ce4N16 -> 4 CeN + 6 N2",
     "space_group_symbol": "I4₁/a",
     "space_group_number": 88
   },
@@ -13980,6 +14068,7 @@
     "E_d": 12.970943368949348,
     "V_d": 16.9410772693824,
     "P_d": 168.7542354333823,
+    "reaction": "1 N16 -> 8 N2",
     "space_group_symbol": "I4₁/a",
     "space_group_number": 88
   },
@@ -14132,6 +14221,7 @@
     "E_d": 1.3624818078599097,
     "V_d": 7.66399615102858,
     "P_d": 40.9622174091607,
+    "reaction": "1 Cd4N16 -> 4 CdN + 6 N2",
     "space_group_symbol": "I-42d",
     "space_group_number": 122
   },
@@ -14284,6 +14374,7 @@
     "E_d": 0.8099814822012832,
     "V_d": 6.100385537451055,
     "P_d": 22.5096799083994,
+    "reaction": "3 Fe4N16 -> 4 Fe3N + 22 N2",
     "space_group_symbol": "I4/mcm",
     "space_group_number": 140
   },
@@ -14568,6 +14659,7 @@
     "E_d": 4.425123891950632,
     "V_d": 9.887227156296712,
     "P_d": 55.83220394632252,
+    "reaction": "3 Sn2N40 -> 2 Sn3N4 + 56 N2",
     "space_group_symbol": "I-4",
     "space_group_number": 82
   },
@@ -15320,6 +15412,7 @@
     "E_d": 2.7638357044888533,
     "V_d": 5.947569022570245,
     "P_d": 23.777759924808947,
+    "reaction": "1 Zn48N72 -> 16 Zn3N2 + 20 N2",
     "space_group_symbol": "Ia-3",
     "space_group_number": 206
   },
@@ -15616,6 +15709,7 @@
     "E_d": 2.2480846748587235,
     "V_d": 6.393542534248567,
     "P_d": 21.960588544560466,
+    "reaction": "1 Ba4N40 -> 2 Ba2N + 19 N2",
     "space_group_symbol": "Ibam",
     "space_group_number": 72
   },
@@ -15912,6 +16006,7 @@
     "E_d": 4.277616601039857,
     "V_d": 8.212040909095306,
     "P_d": 33.38917752496015,
+    "reaction": "1 Ca4N40 -> 2 Ca2N + 19 N2",
     "space_group_symbol": "Ibam",
     "space_group_number": 72
   },
@@ -16064,6 +16159,7 @@
     "E_d": 4.258756596456716,
     "V_d": 8.208558976193125,
     "P_d": 36.07364448729623,
+    "reaction": "3 Mg4N16 -> 4 Mg3N2 + 20 N2",
     "space_group_symbol": "Ibam",
     "space_group_number": 72
   },
@@ -16264,6 +16360,7 @@
     "E_d": 4.045817695039963,
     "V_d": 10.390391837391702,
     "P_d": 73.20594923708448,
+    "reaction": "3 Sn4N24 -> 4 Sn3N4 + 28 N2",
     "space_group_symbol": "Ibam",
     "space_group_number": 72
   },
@@ -16344,6 +16441,7 @@
     "E_d": 1.3367120357052098,
     "V_d": 5.93552929756507,
     "P_d": 24.70179015682778,
+    "reaction": "3 Sn2N6 -> 2 Sn3N4 + 5 N2",
     "space_group_symbol": "Imm2",
     "space_group_number": 44
   },
@@ -16568,6 +16666,7 @@
     "E_d": 2.2822775218343145,
     "V_d": 6.541702608931592,
     "P_d": 24.157880587311723,
+    "reaction": "1 Ir2N30 -> 2 IrN3 + 12 N2",
     "space_group_symbol": "P2₁/m",
     "space_group_number": 11
   },
@@ -16852,6 +16951,7 @@
     "E_d": 3.013944185175196,
     "V_d": 9.664972178056054,
     "P_d": 61.02678619760038,
+    "reaction": "1 Y6N36 -> 6 YN + 15 N2",
     "space_group_symbol": "C2/m",
     "space_group_number": 12
   },
@@ -17478,6 +17578,7 @@
     "E_d": 3.553442578680402,
     "V_d": 8.333434136414434,
     "P_d": 36.59025818440352,
+    "reaction": "2 Fe9N90 -> 6 Fe3N + 87 N2",
     "space_group_symbol": "R3",
     "space_group_number": 146
   },
@@ -17582,6 +17683,7 @@
     "E_d": 1.649006393568489,
     "V_d": 5.045252550865812,
     "P_d": 17.08432462592277,
+    "reaction": "1 Ba4N8 -> 2 Ba2N + 3 N2",
     "space_group_symbol": "Fmmm",
     "space_group_number": 69
   },
@@ -17632,6 +17734,7 @@
     "E_d": 1.1907086988985016,
     "V_d": 5.622176509600702,
     "P_d": 20.95900510263209,
+    "reaction": "3 ZnN2 -> 1 Zn3N2 + 2 N2",
     "space_group_symbol": "P1",
     "space_group_number": 1
   },
@@ -17916,6 +18019,7 @@
     "E_d": 6.660061598085173,
     "V_d": 8.613139970782752,
     "P_d": 31.432227271908253,
+    "reaction": "1 C2N40 -> 2 C + 20 N2",
     "space_group_symbol": "P-42₁c",
     "space_group_number": 114
   },
@@ -18092,6 +18196,7 @@
     "E_d": 5.087499304107211,
     "V_d": 8.441701328936382,
     "P_d": 31.11334447235788,
+    "reaction": "1 H4N20 -> 2 H2 + 10 N2",
     "space_group_symbol": "P2₁/c",
     "space_group_number": 14
   }
