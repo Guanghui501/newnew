@@ -59,9 +59,9 @@
                 <th onclick="sortBy('formula')">Formula</th>
                 <th onclick="sortBy('mass_density')"><span id="th-mass_density">Mass Density (g/cm<sup>3</sup>)</span></th>
                 <th onclick="sortBy('N_concentration')"><span id="th-N_concentration">N Concentration (%)</span></th>
-                <th onclick="sortBy('E<sub>d</sub>')"><span id="th-E_d">E_d (kJ/g)</span></th>
-                <th onclick="sortBy('V<sub>d</sub>')"><span id="th-V_d">V_d (km/s)</span></th>
-                <th onclick="sortBy('P<sub>d</sub>')"><span id="th-P_d">P_d (GPa)</span></th>
+                <th onclick="sortBy('E_d')"><span id="th-E_d">E<sub>d</sub> (kJ/g)</span></th>
+                <th onclick="sortBy('V_d')"><span id="th-V_d">V<sub>d</sub> (km/s)</span></th>
+                <th onclick="sortBy('P_d')"><span id="th-P_d">P<sub>d</sub> (GPa)</span></th>
             </tr>
         </thead>
 
@@ -148,9 +148,9 @@
             switch (col) {
                 case 'mass_density': return 'Mass Density (g/cm³)';
                 case 'N_concentration': return 'N Concentration (%)';
-                case 'E_d': return 'E_d (kJ/g)';
-                case 'V_d': return 'V_d (km/s)';
-                case 'P_d': return 'P_d (GPa)';
+                case 'E_d': return 'E<sub>d</sub> (kJ/g)';
+                case 'V_d': return 'V<sub>d</sub> (km/s)';
+                case 'P_d': return 'P<sub>d</sub> (GPa)';
                 default: return col;
             }
         }
