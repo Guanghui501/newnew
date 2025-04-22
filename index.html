@@ -88,21 +88,18 @@
             cursor: pointer;
         }
 
-        th::after {
-            content: '';
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.5;
-        }
-
         th[data-sort-direction="asc"]::after {
-            content: '↑';
+            content: ' ↑';
+            position: static;
+            display: inline-block;
+            margin-left: 8px;
         }
 
         th[data-sort-direction="desc"]::after {
-            content: '↓';
+            content: ' ↓';
+            position: static;
+            display: inline-block;
+            margin-left: 8px;
         }
 
         td {
@@ -191,11 +188,11 @@
                 <tr>
                     <th onclick="sortBy('id')">ID</th>
                     <th onclick="sortBy('formula')">Formula</th>
-                    <th onclick="sortBy('mass_density')" data-sort-direction="">Density (g/cm³)</th>
-                    <th onclick="sortBy('N_concentration')" data-sort-direction="">N Content (%)</th>
-                    <th onclick="sortBy('E_d')" data-sort-direction="">Energy (kJ/g)</th>
-                    <th onclick="sortBy('V_d')" data-sort-direction="">Velocity (km/s)</th>
-                    <th onclick="sortBy('P_d')" data-sort-direction="">Pressure (GPa)</th>
+                    <th onclick="sortBy('mass_density')">Density (g/cm³)</th>
+                    <th onclick="sortBy('N_concentration')">N Content (%)</th>
+                    <th onclick="sortBy('E_d')">Energy (kJ/g)</th>
+                    <th onclick="sortBy('V_d')">Velocity (km/s)</th>
+                    <th onclick="sortBy('P_d')">Pressure (GPa)</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -209,21 +206,146 @@
     </div>
 
     <script>
-        // 保持原有JavaScript功能不变，仅更新样式相关部分
-        // 原有JavaScript代码在这里...
-        
-        // 更新样式相关的函数
-        function updateSortArrows() {
+        function toSubscript(text) {
+            const subscriptMap = {
+                '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+                '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉'
+            };
+            return text.replace(/\d/g, digit => subscriptMap[digit] || digit);
+        }
+
+        function formatNumber(value) {
+            if (value === undefined || value === null || isNaN(value)) {
+                return 'N/A';
+            }
+            return parseFloat(value).toFixed(3);
+        }
+
+        let sortColumn = 'id';
+        let sortDirection = 'desc';
+        let data = {};
+        let currentPage = 1;
+        const rowsPerPage = 15;
+
+        // Mock data fetch - replace with actual fetch('db.json')
+        setTimeout(() => {
+            data = {
+                "1": {
+                    "formula": "C3N6O6",
+                    "mass_density": 1.85,
+                    "N_concentration": 36.8,
+                    "E_d": 5.42,
+                    "V_d": 8.72,
+                    "P_d": 32.1
+                },
+                "2": {
+                    "formula": "C4N8O8",
+                    "mass_density": 1.92,
+                    "N_concentration": 39.1,
+                    "E_d": 5.65,
+                    "V_d": 8.95,
+                    "P_d": 34.2
+                }
+            };
+            renderTable();
+        }, 100);
+
+        function sortBy(column) {
+            if (sortColumn === column) {
+                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortColumn = column;
+                sortDirection = 'desc';
+            }
+            renderTable();
+        }
+
+        function renderTable() {
+            const tableBody = document.querySelector('#data-table tbody');
+            tableBody.innerHTML = '';
+
+            const searchQuery = document.getElementById('search-box').value.toLowerCase();
+            const filteredData = Object.entries(data).filter(([entryId, entry]) =>
+                entry.formula.toLowerCase().includes(searchQuery)
+            );
+
+            filteredData.sort((a, b) => {
+                const aVal = sortColumn === 'id' ? parseInt(a[0]) : a[1][sortColumn];
+                const bVal = sortColumn === 'id' ? parseInt(b[0]) : b[1][sortColumn];
+
+                if (typeof aVal === 'number' && typeof bVal === 'number') {
+                    return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+                }
+                return 0;
+            });
+
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+            currentPage = Math.min(currentPage, totalPages);
+            currentPage = Math.max(currentPage, 1);
+
+            const startIndex = (currentPage - 1) * rowsPerPage;
+            const endIndex = startIndex + rowsPerPage;
+            const paginatedData = filteredData.slice(startIndex, endIndex);
+
+            paginatedData.forEach(([entryId, entry]) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${entryId}</td>
+                    <td>${toSubscript(entry.formula)}</td>
+                    <td class="numeric-cell">${formatNumber(entry.mass_density)}</td>
+                    <td class="numeric-cell">${formatNumber(entry.N_concentration)}</td>
+                    <td class="numeric-cell">${formatNumber(entry.E_d)}</td>
+                    <td class="numeric-cell">${formatNumber(entry.V_d)}</td>
+                    <td class="numeric-cell">${formatNumber(entry.P_d)}</td>
+                `;
+                row.addEventListener('click', () => showDetails(entryId));
+                tableBody.appendChild(row);
+            });
+
+            updatePagination(filteredData.length);
+            updateSortHeaders();
+        }
+
+        function updatePagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / rowsPerPage);
+            document.getElementById('page-number').textContent = 
+                `Page ${currentPage} of ${totalPages || 1}`;
+            
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+        }
+
+        function changePage(direction) {
+            direction === 'next' ? currentPage++ : currentPage--;
+            renderTable();
+        }
+
+        function updateSortHeaders() {
             document.querySelectorAll('th').forEach(header => {
+                const colName = header.getAttribute('onclick').replace("sortBy('", "").replace("')", "");
                 header.removeAttribute('data-sort-direction');
-                if (header.textContent.includes(sortColumn)) {
+                if (colName === sortColumn) {
                     header.setAttribute('data-sort-direction', sortDirection);
                 }
             });
         }
 
-        // 在renderTable()中调用updateSortArrows()
-        // 其他JavaScript功能保持原有实现
+        function showDetails(entryId) {
+            const entry = data[entryId];
+            alert(`Detailed View:\n
+                ID: ${entryId}
+                Formula: ${toSubscript(entry.formula)}
+                Density: ${formatNumber(entry.mass_density)} g/cm³
+                Nitrogen Content: ${formatNumber(entry.N_concentration)}%
+                Energy: ${formatNumber(entry.E_d)} kJ/g
+                Velocity: ${formatNumber(entry.V_d)} km/s
+                Pressure: ${formatNumber(entry.P_d)} GPa`);
+        }
+
+        // Initial render
+        renderTable();
     </script>
 </body>
 </html>
