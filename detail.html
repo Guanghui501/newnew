@@ -6,7 +6,6 @@
     <title>Material Details - Nemesis</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.1/3Dmol-min.js"></script>
     <style>
-        /* 保持原有样式不变 */
         body, html {
             height: 100%;
             margin: 0;
@@ -92,6 +91,48 @@
         .toggle-labels-btn:hover {
             background-color: #7B1FA2;
         }
+
+        /* INCAR参数样式 */
+        .incar-section {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        details {
+            background: #f8f9fa;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 8px;
+            outline: none;
+        }
+        .incar-content {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .incar-content {
+                font-size: 12px;
+                padding: 10px;
+            }
+            summary {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -109,6 +150,37 @@
                 <button id="download-cif" class="btn download-btn" disabled>Download the CIF file</button>
                 <button id="toggle-lattice" class="btn toggle-lattice-btn" disabled>Display the lattice pattern</button>
                 <button id="toggle-labels" class="btn toggle-labels-btn" disabled>Display atomic labels</button>
+            </div>
+
+            <!-- 新增INCAR参数区域 -->
+            <div class="incar-section">
+                <details>
+                    <summary>VASP Calculation Parameters (INCAR-basic)</summary>
+                    <pre class="incar-content">
+PREC   = Normal
+ENCUT  = 520 eV
+NELMIN= 5
+LREAL = F    
+KSPACING = 0.15
+EDIFF  = 1E-5
+SIGMA = 0.2
+ISPIN = 1    
+KPAR = 4
+NPAR = 1     
+# Ionic Relaxation
+ICHARG = 2
+EDIFFG = -0.01        
+NSW    = 300          
+IBRION = 2
+POTIM = 0.5
+ISIF   = 3            
+PSTRESS= 0
+LCHARG =  F
+LWAVE  =  F</pre>
+                </details>
+                <button class="btn download-btn" onclick="downloadINCAR()" style="margin-top: 10px;">
+                    Download INCAR
+                </button>
             </div>
         </div>
 
@@ -182,11 +254,9 @@
     function renderAtomsAndBonds() {
         if (!viewer) return;
         
-        // 清除残留元素
         viewer.removeAllShapes();
         viewer.removeAllLabels();
         
-        // 设置基础样式
         viewer.setStyle({}, { 
             stick: { radius: 0.15 }, 
             sphere: { 
@@ -195,7 +265,6 @@
             } 
         });
 
-        // 原子标签显示
         if (labelsVisible) {
             const atoms = viewer.getModel().selectedAtoms({});
             atoms.forEach(atom => {
@@ -210,7 +279,6 @@
             });
         }
 
-        // 晶格显示
         if (latticeVisible) {
             viewer.addUnitCell({
                 box: { color: 0x0000ff, radius: 0.1 },
@@ -253,6 +321,18 @@
         this.textContent = labelsVisible ? "Hide atomic labels" : "Display atomic labels";
         renderAtomsAndBonds();
     });
+
+    // INCAR下载功能
+    function downloadINCAR() {
+        const content = document.querySelector('.incar-content').textContent;
+        const blob = new Blob([content], {type: 'text/plain'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `INCAR_${id}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
 
     // 工具函数
     function generateCIF(data) {
