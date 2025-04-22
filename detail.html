@@ -228,9 +228,9 @@
       function updateMaterialInfo(material) {
           document.getElementById('formula').innerHTML = formatFormula(material.formula);
           document.getElementById('space_group').innerText = 
-      material.space_group_symbol 
-          ? `${material.space_group_symbol} (#${material.space_group_number})` 
-          : 'N/A';
+              material.space_group_symbol 
+                  ? `${material.space_group_symbol} (#${material.space_group_number})` 
+                  : 'N/A';
           document.getElementById('energy').innerText = material.energy?.toFixed(3) ?? 'N/A';
           document.getElementById('density').innerText = material.mass_density?.toFixed(3) ?? 'N/A';
           document.getElementById('n_concentration').innerText = material.N_concentration?.toFixed(3) ?? 'N/A';
