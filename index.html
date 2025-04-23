@@ -4,212 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nitrogen-rich Energetic Materials Information Database (Nemesis)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-bg: #f8f9fa;
-            --text-color: #2c3e50;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 2rem;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .search-container {
-            position: relative;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #search-box {
+        /* 3D 视图容器样式 */
+        #viewer {
             width: 100%;
-            padding: 1rem 2rem;
-            border: 2px solid var(--secondary-color);
-            border-radius: 2rem;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        #search-box:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
-        }
-
-        table {
-            width: 100%;
-            background: white;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 1px 15px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
-            border-collapse: collapse;
-        }
-
-        thead {
-            background: linear-gradient(145deg, var(--primary-color), #1a252f);
-            color: white;
-        }
-
-        th {
-            padding: 1.2rem;
-            font-weight: 600;
-            text-align: left;
+            height: 600px;
+            border: 1px solid #ccc;
             position: relative;
-            transition: background 0.2s ease;
-            font-size: 1.5rem;
         }
 
-        th:hover {
-            background: rgba(255,255,255,0.1);
-            cursor: pointer;
-        }
-
-        th::after {
-            content: '';
+        /* 加载消息样式 */
+        #viewer-message {
             position: absolute;
-            right: 1rem;
             top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.5;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #666;
+            text-align: center;
         }
 
-        th[data-sort-direction="asc"]::after {
-            content: '↑';
+        /* 动画效果 */
+        .animate-hover {
+            transition: all 0.3s ease;
         }
 
-        th[data-sort-direction="desc"]::after {
-            content: '↓';
-        }
-
-        td {
-            padding: 1rem;
-            border-bottom: 1px solid #e9ecef;
-            transition: background 0.2s ease;
-            font-size: 1.4rem;
-        }
-
-        tr:hover td {
-            background: #f8f9fa;
-            cursor: pointer;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-        }
-
-        .pagination button {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 0.5rem;
-            background: var(--secondary-color);
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 600;
-        }
-
-        .pagination button:hover {
-            background: var(--primary-color);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .pagination button:disabled {
-            background: #bdc3c7;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        #page-number {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .numeric-cell {
-            text-align: right;
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-            
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-            
-            th, td {
-                min-width: 120px;
-            }
+        .animate-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
     </style>
 </head>
-<body>
-    <h1>Nitrogen-rich Energetic Materials Information Database (Nemesis)</h1>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold text-center text-blue-500 mb-8">Nitrogen-rich Energetic Materials Information Database (Nemesis)</h1>
 
-    <!-- Search Box -->
-    <div class="search-container">
+        <!-- Search Box -->
+        <div class="search-container max-w-2xl mx-auto mb-8">
             <input type="text" id="search-box" placeholder="Search by chemical formula..." 
-                   oninput="renderTable()">
+                   oninput="renderTable()"
+                   class="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 text-lg">
         </div>
 
-    <table id="data-table">
-        <thead>
-            <tr>
-                <th onclick="sortBy('id')">ID</th>
-                <th onclick="sortBy('formula')">Formula</th>
-                <th onclick="sortBy('mass_density')"><span id="th-mass_density">Mass Density (g/cm<sup>3</sup>)</span></th>
-                <th onclick="sortBy('N_concentration')"><span id="th-N_concentration">N Concentration (%)</span></th>
-                <th onclick="sortBy('E_d')"><span id="th-E_d">E<sub>d</sub> (kJ/g)</span></th>
-                <th onclick="sortBy('V_d')"><span id="th-V_d">V<sub>d</sub> (km/s)</span></th>
-                <th onclick="sortBy('P_d')"><span id="th-P_d">P<sub>d</sub> (GPa)</span></th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data will be inserted here -->
-        </tbody>
-    </table>
+        <table id="data-table" class="w-full bg-white rounded-lg shadow-md overflow-hidden mb-8">
+            <thead class="bg-blue-500 text-white">
+                <tr>
+                    <th onclick="sortBy('id')" class="p-4 font-bold text-left cursor-pointer hover:bg-blue-600">ID</th>
+                    <th onclick="sortBy('formula')" class="p-4 font-bold text-left cursor-pointer hover:bg-blue-600">Formula</th>
+                    <th onclick="sortBy('mass_density')" class="p-4 font-bold text-left cursor-pointer hover:bg-blue-600">
+                        <span id="th-mass_density">Mass Density (g/cm<sup>3</sup>)</span>
+                    </th>
+                    <th onclick="sortBy('N_concentration')" class="p-4 font-bold text-left cursor-pointer hover:bg-blue-600">
+                        <span id="th-N_concentration">N Concentration (%)</span>
+                    </th>
+                    <th onclick="sortBy('E_d')" class="p-4 font-bold text-left cursor-pointer hover:bg-blue-600">
+                        <span id="th-E_d">E<sub>d</sub> (kJ/g)</span>
+                    </th>
+                    <th onclick="sortBy('V_d')" class="p-4 font-bold text-left cursor-pointer hover:bg-blue-600">
+                        <span id="th-V_d">V<sub>d</sub> (km/s)</span>
+                    </th>
+                    <th onclick="sortBy('P_d')" class="p-4 font-bold text-left cursor-pointer hover:bg-blue-600">
+                        <span id="th-P_d">P<sub>d</sub> (GPa)</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
 
-    <!-- Pagination Controls -->
-    <div class="pagination">
-            <button onclick="changePage('prev')" id="prev-btn">Previous</button>
-            <span id="page-number"></span>
-            <button onclick="changePage('next')" id="next-btn">Next</button>
+        <!-- Pagination Controls -->
+        <div class="pagination flex justify-center gap-4 mb-8">
+            <button onclick="changePage('prev')" id="prev-btn"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md animate-hover">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Previous
+            </button>
+            <span id="page-number" class="flex items-center font-medium text-blue-500"></span>
+            <button onclick="changePage('next')" id="next-btn"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md animate-hover">
+                Next <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
         </div>
     </div>
 
@@ -237,12 +113,12 @@
 
         // Fetch the JSON data
         fetch('db.json')
-            .then(response => response.json())
-            .then(jsonData => {
+           .then(response => response.json())
+           .then(jsonData => {
                 data = jsonData;
                 renderTable();
             })
-            .catch(error => {
+           .catch(error => {
                 console.error('Error loading JSON data:', error);
             });
 
@@ -257,6 +133,7 @@
         }
 
         // Render table with current page and search query
+        function renderTable()
         function renderTable() {
             const tableBody = document.querySelector('#data-table tbody');
             tableBody.innerHTML = '';
@@ -313,13 +190,13 @@
             paginatedData.forEach(([entryId, entry]) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${entryId}</td>
-                    <td>${toSubscript(entry.formula)}</td>
-                    <td>${formatNumber(entry.mass_density)}</td>
-                    <td>${formatNumber(entry.N_concentration)}</td>
-                    <td>${formatNumber(entry.E_d)}</td>
-                    <td>${formatNumber(entry.V_d)}</td>
-                    <td>${formatNumber(entry.P_d)}</td>
+                    <td class="p-4 border-b border-gray-200">${entryId}</td>
+                    <td class="p-4 border-b border-gray-200">${toSubscript(entry.formula)}</td>
+                    <td class="p-4 border-b border-gray-200">${formatNumber(entry.mass_density)}</td>
+                    <td class="p-4 border-b border-gray-200">${formatNumber(entry.N_concentration)}</td>
+                    <td class="p-4 border-b border-gray-200">${formatNumber(entry.E_d)}</td>
+                    <td class="p-4 border-b border-gray-200">${formatNumber(entry.V_d)}</td>
+                    <td class="p-4 border-b border-gray-200">${formatNumber(entry.P_d)}</td>
                 `;
                 row.addEventListener('click', () => showDetailsInNewPage(entryId));
                 tableBody.appendChild(row);
@@ -363,7 +240,7 @@
             window.open(`detail.html?${queryParams.toString()}`, '_blank');
         }
         
-         function updateSortArrows() {
+        function updateSortArrows() {
             document.querySelectorAll('th').forEach(header => {
                 header.removeAttribute('data-sort-direction');
                 if (header.textContent.includes(sortColumn)) {
