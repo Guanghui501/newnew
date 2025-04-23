@@ -113,13 +113,20 @@
 
         // Fetch the JSON data
         fetch('db.json')
-           .then(response => response.json())
+           .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
            .then(jsonData => {
                 data = jsonData;
+                console.log('Fetched data:', data); // 打印获取到的数据
                 renderTable();
             })
            .catch(error => {
                 console.error('Error loading JSON data:', error);
+                alert('Failed to load data. Please check the console for more details.');
             });
 
         function sortBy(column) {
@@ -133,7 +140,6 @@
         }
 
         // Render table with current page and search query
-        function renderTable()
         function renderTable() {
             const tableBody = document.querySelector('#data-table tbody');
             tableBody.innerHTML = '';
@@ -250,4 +256,4 @@
         }
     </script>
 </body>
-</html>
+</html>    
