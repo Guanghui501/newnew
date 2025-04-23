@@ -138,13 +138,13 @@
           <div class="info">
               <h2 id="formula">加载中...</h2>
               <p><strong>Space Group:</strong> <span id="space_group"></span></p>
-              <p><strong>Energy:</strong> <span id="energy"></span> eV</p>
               <p><strong>Mass Density:</strong> <span id="density"></span> g/cm³</p>
               <p><strong>Nitrogen Concentration:</strong> <span id="n_concentration"></span>%</p>
               <p><strong>Energy Density (E<sub>d</sub>):</strong> <span id="ed"></span> kJ/g</p>
               <p><strong>Detonation Velocity (V<sub>d</sub>):</strong> <span id="vd"></span> km/s</p>
               <p><strong>Detonation Pressure (P<sub>d</sub>):</strong> <span id="pd"></span> GPa</p>
               <p><strong>Reaction:</strong> <span id="reaction"></span></p>
+              <p><strong>Energy:</strong> <span id="energy"></span> eV</p>
  
               <div class="button-container">
                   <button id="download-cif" class="btn download-btn" disabled>Download the CIF file</button>
@@ -232,13 +232,13 @@
               material.space_group_symbol && material.space_group_number
                   ? `${italicizeLettersOnly(material.space_group_symbol)} (No. ${material.space_group_number})`
                   : 'N/A';
-          document.getElementById('energy').innerText = material.energy?.toFixed(3) ?? 'N/A';
           document.getElementById('density').innerText = material.mass_density?.toFixed(3) ?? 'N/A';
           document.getElementById('n_concentration').innerText = material.N_concentration?.toFixed(3) ?? 'N/A';
           document.getElementById('ed').innerText = material.E_d?.toFixed(3) ?? 'N/A';
           document.getElementById('vd').innerText = material.V_d?.toFixed(3) ?? 'N/A';
           document.getElementById('pd').innerText = material.P_d?.toFixed(3) ?? 'N/A';
           document.getElementById('reaction').innerHTML = formatFormula(material.reaction?.replace(/->/g, '→') ?? 'N/A');
+          document.getElementById('energy').innerText = material.energy?.toFixed(3) ?? 'N/A';
       }
  
       function initializeViewer(material) {
