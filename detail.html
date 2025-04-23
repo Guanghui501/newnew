@@ -238,8 +238,11 @@
           document.getElementById('vd').innerText = material.V_d?.toFixed(3) ?? 'N/A';
           document.getElementById('pd').innerText = material.P_d?.toFixed(3) ?? 'N/A';
           document.getElementById('reaction').innerHTML = formatFormula(material.reaction?.replace(/->/g, '→') ?? 'N/A');
+            // 处理 energy 保留三位小数并对化学数字下标
           const energyStr = material.energy || 'N/A';
-          const formattedEnergy = energyStr.replace(/(-?\d+\.\d+)/g, (match) => parseFloat(match).toFixed(3));
+          const formattedEnergy = energyStr
+            .replace(/(-?\d+\.\d+)/g, (match) => parseFloat(match).toFixed(3))
+            .replace(/([A-Za-z]+)(\d+)/g, (_, elem, num) => `${elem}<sub>${num}</sub>`);
           document.getElementById('energy').innerHTML = formattedEnergy;
       }
  
