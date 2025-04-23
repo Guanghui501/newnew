@@ -6,134 +6,185 @@
       <title>Material Details - Nemesis</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.1/3Dmol-min.js"></script>
       <style>
-          /* 保持原有样式不变 */
-          body, html {
-              height: 100%;
-              margin: 0;
-              padding: 0;
-              font-family: Arial, sans-serif;
+      /* 更新颜色方案 */
+      :root {
+          --primary-blue: #2A5D84;
+          --secondary-teal: #3AA6B9;
+          --accent-orange: #FF6B35;
+          --light-bg: #F8F9FA;
+          --dark-text: #2C3E50;
+      }
+      
+      body {
+          background: var(--light-bg);
+          color: var(--dark-text);
+          line-height: 1.7;
+      }
+      
+      /* 标题美化 */
+      .info h2 {
+          color: var(--primary-blue);
+          font-size: 2.2rem;
+          margin: 1.5rem 0;
+          padding: 1rem 0;
+          border-bottom: 3px solid var(--secondary-teal);
+          position: relative;
+          font-weight: 700;
+      }
+      
+      .info h2::after {
+          content: "";
+          position: absolute;
+          bottom: -3px;
+          left: 0;
+          width: 120px;
+          height: 3px;
+          background: var(--accent-orange);
+      }
+      
+      /* 信息条目美化 */
+      .info p {
+          margin: 1.2rem 0;
+          padding: 0.8rem 1.2rem;
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+          display: grid;
+          grid-template-columns: 160px 1fr;
+          align-items: center;
+      }
+      
+      .info p strong {
+          color: var(--primary-blue);
+          font-weight: 600;
+      }
+      
+      /* 3D查看器容器美化 */
+      .viewer-container {
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+          background: white;
+          transition: transform 0.3s ease;
+      }
+      
+      .viewer-container:hover {
+          transform: translateY(-5px);
+      }
+      
+      #viewer {
+          border-radius: 12px 12px 0 0;
+      }
+      
+      /* 按钮组美化 */
+      .button-container {
+          margin: 2rem 0;
+      }
+      
+      .btn {
+          min-width: 220px;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          justify-content: center;
+      }
+      
+      .download-btn {
+          background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      }
+      
+      .toggle-lattice-btn {
+          background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+      }
+      
+      .toggle-labels-btn {
+          background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+      }
+      
+      .btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+      
+      /* INCAR参数区美化 */
+      .incar-section {
+          margin: 2.5rem 0;
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+      
+      details {
+          border-left: 4px solid var(--secondary-teal);
+          background: linear-gradient(to right, #f8f9fa 50%, white 100%);
+      }
+      
+      summary {
+          font-size: 1.1rem;
+          padding: 1.2rem;
+          color: var(--primary-blue);
+      }
+      
+      .incar-content {
+          background: #fcfcfc;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          padding: 1.5rem;
+          font-size: 0.95rem;
+          line-height: 1.8;
+          color: #4a5568;
+          position: relative;
+      }
+      
+      .incar-content::before {
+          content: "INCAR";
+          position: absolute;
+          top: -12px;
+          left: 20px;
+          background: var(--primary-blue);
+          color: white;
+          padding: 4px 12px;
+          border-radius: 4px;
+          font-size: 0.85rem;
+      }
+      
+      /* 加载提示美化 */
+      #viewer-message {
+          background: rgba(255,255,255,0.9);
+          padding: 1rem 2rem;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          font-weight: 500;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+      }
+      
+      #viewer-message::before {
+          content: "⏳";
+          font-size: 1.2rem;
+      }
+      
+      /* 响应式优化 */
+      @media (max-width: 768px) {
+          .info p {
+              grid-template-columns: 1fr;
+              gap: 0.5rem;
           }
-          .container {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: center;
-              align-items: flex-start;
-              max-width: 1200px;
-              margin: 20px auto;
-              gap: 20px;
-          }
-          .info {
-              flex: 1;
-              min-width: 300px;
-              max-width: 600px;
-              font-size: 18px;
-              word-break: break-word;
-              padding: 20px;
-              box-sizing: border-box;
-          }
-          .viewer-container {
-              flex: 1;
-              min-width: 300px;
-              max-width: 600px;
-          }
-          #viewer {
-              width: 100%;
-              height: 600px;
-              border: 1px solid #ccc;
-              position: relative;
-          }
-          .info h2 {
-              text-align: center;
-              font-size: 26px;
-              overflow-wrap: break-word;
-              margin-top: 0;
-          }
-          #viewer-message {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              font-size: 16px;
-              color: #666;
-              text-align: center;
-          }
-          .button-container {
-              display: flex;
-              justify-content: center;
-              margin-top: 15px;
-              gap: 10px;
-              flex-wrap: wrap;
-          }
+          
           .btn {
-              padding: 8px 16px;
-              color: white;
-              border: none;
-              border-radius: 4px;
-              cursor: pointer;
-              font-size: 14px;
-              transition: background-color 0.3s;
-              margin: 2px;
+              width: 100%;
           }
-          .download-btn {
-              background-color: #4CAF50;
+          
+          #viewer {
+              height: 400px;
           }
-          .download-btn:hover {
-              background-color: #45a049;
-          }
-          .toggle-lattice-btn {
-              background-color: #2196F3;
-          }
-          .toggle-lattice-btn:hover {
-              background-color: #0b7dda;
-          }
-          .toggle-labels-btn {
-              background-color: #9C27B0;
-          }
-          .toggle-labels-btn:hover {
-              background-color: #7B1FA2;
-          }
- 
-          /* INCAR参数样式 */
-          .incar-section {
-              margin-top: 25px;
-              border-top: 1px solid #eee;
-              padding-top: 20px;
-          }
-          details {
-              background: #f8f9fa;
-              border-radius: 4px;
-              padding: 10px;
-              margin: 10px 0;
-          }
-          summary {
-              cursor: pointer;
-              font-weight: bold;
-              color: #2c3e50;
-              padding: 8px;
-              outline: none;
-          }
-          .incar-content {
-              background-color: #f4f4f4;
-              border: 1px solid #ddd;
-              border-radius: 4px;
-              padding: 15px;
-              overflow-x: auto;
-              font-family: 'Courier New', Courier, monospace;
-              font-size: 14px;
-              line-height: 1.5;
-              margin-top: 10px;
-              white-space: pre-wrap;
-          }
- 
-          @media (max-width: 768px) {
-              .incar-content {
-                  font-size: 12px;
-                  padding: 10px;
-              }
-              summary {
-                  font-size: 16px;
-              }
-          }
+      }
       </style>
   </head>
   <body>
