@@ -238,7 +238,7 @@
           document.getElementById('vd').innerText = material.V_d?.toFixed(3) ?? 'N/A';
           document.getElementById('pd').innerText = material.P_d?.toFixed(3) ?? 'N/A';
           document.getElementById('reaction').innerHTML = formatFormula(material.reaction?.replace(/->/g, '→') ?? 'N/A');
-          document.getElementById('energy').innerText = material.energy?.toFixed(3) ?? 'N/A';
+          document.getElementById('energy').innerText = material.energy ?? 'N/A';
       }
  
       function initializeViewer(material) {
