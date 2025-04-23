@@ -6,146 +6,135 @@
       <title>Material Details - Nemesis</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.1/3Dmol-min.js"></script>
       <style>
-    /* 更新基础样式 */
-          body {
-              font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-              background: #f8fafc;
-              color: #1e293b;
-              line-height: 1.6;
+          /* 保持原有样式不变 */
+          body, html {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+              font-family: Arial, sans-serif;
           }
-      
           .container {
-              gap: 30px;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              align-items: flex-start;
+              max-width: 1200px;
+              margin: 20px auto;
+              gap: 20px;
+          }
+          .info {
+              flex: 1;
+              min-width: 300px;
+              max-width: 600px;
+              font-size: 18px;
+              word-break: break-word;
               padding: 20px;
+              box-sizing: border-box;
           }
-      
-          
-      
-          /* 增强数据可视化 */
-          .info p strong {
-              color: #475569;
-              min-width: 180px;
-              display: inline-block;
-          }
-      
-          /* 按钮组美化 */
-          .button-container {
-              gap: 12px;
-              margin: 20px 0;
-          }
-      
-          .btn {
-              border-radius: 8px;
-              padding: 10px 20px;
-              font-weight: 500;
-              transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-              box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-          }
-      
-          .download-btn { background: #10b981; }
-          .toggle-lattice-btn { background: #3b82f6; }
-          .toggle-labels-btn { background: #8b5cf6; }
-      
-          .btn:hover {
-              transform: translateY(-1px);
-              box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-          }
-      
-          /* 美化INCAR参数区域 */
-          .incar-section {
-              margin-top: 2rem;
-              border-top: 1px solid #f1f5f9;
-          }
-      
-          details {
-              background: #f8fafc;
-              border-radius: 8px;
-              border: 1px solid #e2e8f0;
-              margin: 1rem 0;
-              transition: all 0.2s;
-          }
-      
-          details[open] {
-              background: white;
-              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-          }
-      
-          summary {
-              padding: 1rem;
-              color: #3b82f6;
-              font-weight: 600;
-          }
-      
-          summary:hover {
-              background: #f1f5f9;
-              border-radius: 8px;
-          }
-      
-          .incar-content {
-              background: #ffffff;
-              border-radius: 6px;
-              padding: 1.5rem;
-              font-size: 15px;
-              color: #334155;
-              line-height: 1.8;
-              border: 1px solid #e2e8f0;
-          }
-      
-          /* 3D查看器容器美化 */
           .viewer-container {
               flex: 1;
               min-width: 300px;
               max-width: 600px;
-              /* 移除冲突属性 */
-              /* overflow: hidden; */ 
-              /* border: 1px solid #e2e8f0; */
-              border-radius: 8px;
-              box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
           }
-      
+          #viewer {
+              width: 100%;
+              height: 600px;
+              border: 1px solid #ccc;
+              position: relative;
+          }
+          .info h2 {
+              text-align: center;
+              font-size: 26px;
+              overflow-wrap: break-word;
+              margin-top: 0;
+          }
           #viewer-message {
               position: absolute;
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
-              color: #64748b;
-              font-size: 18px;
-              padding: 20px;
-              background: rgba(255, 255, 255, 0.95);
-              border-radius: 8px;
-              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-              z-index: 2;
+              font-size: 16px;
+              color: #666;
+              text-align: center;
           }
-
-        #viewer canvas {
-            border-radius: 8px !important;
-        }
-          /* 响应式优化 */
+          .button-container {
+              display: flex;
+              justify-content: center;
+              margin-top: 15px;
+              gap: 10px;
+              flex-wrap: wrap;
+          }
+          .btn {
+              padding: 8px 16px;
+              color: white;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              font-size: 14px;
+              transition: background-color 0.3s;
+              margin: 2px;
+          }
+          .download-btn {
+              background-color: #4CAF50;
+          }
+          .download-btn:hover {
+              background-color: #45a049;
+          }
+          .toggle-lattice-btn {
+              background-color: #2196F3;
+          }
+          .toggle-lattice-btn:hover {
+              background-color: #0b7dda;
+          }
+          .toggle-labels-btn {
+              background-color: #9C27B0;
+          }
+          .toggle-labels-btn:hover {
+              background-color: #7B1FA2;
+          }
+ 
+          /* INCAR参数样式 */
+          .incar-section {
+              margin-top: 25px;
+              border-top: 1px solid #eee;
+              padding-top: 20px;
+          }
+          details {
+              background: #f8f9fa;
+              border-radius: 4px;
+              padding: 10px;
+              margin: 10px 0;
+          }
+          summary {
+              cursor: pointer;
+              font-weight: bold;
+              color: #2c3e50;
+              padding: 8px;
+              outline: none;
+          }
+          .incar-content {
+              background-color: #f4f4f4;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              padding: 15px;
+              overflow-x: auto;
+              font-family: 'Courier New', Courier, monospace;
+              font-size: 14px;
+              line-height: 1.5;
+              margin-top: 10px;
+              white-space: pre-wrap;
+          }
+ 
           @media (max-width: 768px) {
-              .container {
-                  margin: 10px;
-                  gap: 15px;
+              .incar-content {
+                  font-size: 12px;
+                  padding: 10px;
               }
-              
-              .info, .viewer-container {
-                  min-width: unset;
-                  width: 100%;
+              summary {
+                  font-size: 16px;
               }
-              
-             #viewer {
-                  width: 100%;
-                  height: 600px; /* 确保高度固定 */
-                  background: white;
-                  border-radius: 8px;
-                  /* 新增关键属性 */
-                  position: relative;
-                  z-index: 1;
-                  transform: translateZ(0); /* 触发GPU加速 */
-              }
-
           }
       </style>
-
   </head>
   <body>
       <div class="container">
